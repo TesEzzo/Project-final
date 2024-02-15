@@ -1,4 +1,4 @@
-tailwind.config.js è l'unico file default che dovete toccare ma non dovete toccare i parametri già inseriti e mettendo i vostri parametri personali dovete circondarli da commenti come nell'esempio in basso dove alla fine prima di mergiare salvate tutto quello che avete nel config di tailwind dentro un blocknotes e lo salvate da qualche altra parte e riportate il file in origine
+tailwind.config.js e index.css sono gli unici file default che dovete toccare ma non dovete toccare i parametri già inseriti e mettendo i vostri parametri personali dovete circondarli da commenti come nell'esempio in basso dove alla fine prima di mergiare salvate tutto quello che avete nel config di tailwind dentro un blocknotes e lo salvate da qualche altra parte e riportate il file in origine
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -32,3 +32,14 @@ export default {
   },
   plugins: [],
 }
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//FRANCESCO
+.esempio {
+  @apply robe robe robe;
+}
+//FRANCESCO
