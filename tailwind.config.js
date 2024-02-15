@@ -5,8 +5,25 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "poppins": ["Poppins"]
+      },
+      colors: {
+        //lightmode
+        pri: "#f1f5f9",
+        sec: "#ff3600",
+        ter: "#ff6700",
+        contr: "#313131",
+        c_button: "#ffc300",
+        //darkmode
+        pri_d: "#2c2c2c",
+        c_card_d: "#1e293d",
+        sec_d: "#0cff00",
+        ter_d: "#8bff00",
+        c_button_d: "#31d0aa",
+      },
+    },
   },
   plugins: [],
 }
-
