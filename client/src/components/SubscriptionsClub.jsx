@@ -18,7 +18,11 @@ const SubscriptionsClub = () => {
             <p className="text-2xl italic self-center">Freemium</p>
             <div className="flex flex-col items-center justify-between mt-5">
               <p>Gestionale dell'applicazione</p>
-              <img src={green_check} alt="green_check" className="w-[30px] h-[30px]" />
+              <img
+                src={green_check}
+                alt="green_check"
+                className="w-[30px] h-[30px]"
+              />
             </div>
             <div className="flex flex-col items-center">
               <p>Pubblicità</p>
@@ -39,23 +43,28 @@ const SubscriptionsClub = () => {
             <p className="text-2xl italic self-center">Premium</p>
             <div className="flex flex-col items-center justify-between mt-5">
               <p>Gestionale dell'applicazione</p>
-              <img src={green_check} alt="green_check" className="w-[30px] h-[30px]" />
-            </div>
-            <div className="flex flex-col items-center">
-              <p>Pubblicità</p>
-              <img src={green_check} alt="green_check" className="w-[30px] h-[30px]" />
-            </div>
-            <div className="flex flex-col items-center">
-              <p>Sponsorizzazioni eventi</p>
               <img
-                src={red_x}
-                alt="red_x"
+                src={green_check}
+                alt="green_check"
                 className="w-[30px] h-[30px]"
               />
             </div>
+            <div className="flex flex-col items-center">
+              <p>Pubblicità</p>
+              <img
+                src={green_check}
+                alt="green_check"
+                className="w-[30px] h-[30px]"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <p>Sponsorizzazioni eventi</p>
+              <img src={red_x} alt="red_x" className="w-[30px] h-[30px]" />
+            </div>
             <button className="flex flex-row justify-center items-center mt-2 hover:shadow-emerald-800 bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
-              <p className="p-2">Abbonati</p> {/* //NOTE - Link per il checkout silver */}
-            </button> 
+              <p className="p-2">Abbonati</p>{" "}
+              {/* //NOTE - Link per il checkout silver */}
+            </button>
           </div>
 
           <div className="flex flex-col items-center border-2 rounded-3xl border-none w-[250px] h-[400px] shadow-xl bg-white transition ease-in-out delay-100">
@@ -67,11 +76,19 @@ const SubscriptionsClub = () => {
             <p className="text-2xl italic self-center">Vip</p>
             <div className="flex flex-col items-center justify-between mt-5">
               <p>Gestionale dell'applicazione</p>
-              <img src={green_check} alt="green_check" className="w-[30px] h-[30px]" />
+              <img
+                src={green_check}
+                alt="green_check"
+                className="w-[30px] h-[30px]"
+              />
             </div>
             <div className="flex flex-col items-center">
               <p>Pubblicità</p>
-              <img src={green_check} alt="green_check" className="w-[30px] h-[30px]" />
+              <img
+                src={green_check}
+                alt="green_check"
+                className="w-[30px] h-[30px]"
+              />
             </div>
             <div className="flex flex-col items-center">
               <p>Sponsorizzazioni eventi</p>
@@ -82,7 +99,8 @@ const SubscriptionsClub = () => {
               />
             </div>
             <button className="flex flex-row justify-center items-center mt-2 hover:shadow-emerald-800 bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
-              <p className="p-2">Abbonati</p> {/* //NOTE - Link per il checkout gold */}
+              <p className="p-2">Abbonati</p>{" "}
+              {/* //NOTE - Link per il checkout gold */}
             </button>
           </div>
         </div>
