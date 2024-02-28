@@ -15,6 +15,9 @@ const disconnect = async () => {
 
 const models = {
     User: require("./models/User"),
+    Club: require("./models/Club"),
+    Sport: require("./models/Sport"),
+    Space: require("./models/Space"),
 }
 
 module.exports = {
