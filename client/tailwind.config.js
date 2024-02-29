@@ -13,8 +13,8 @@ export default {
       colors: {
         //lightmode
         pri: "#f1f5f9",
-        sec: "#ff3600",
-        ter: "#ff6700",
+        sec: "#f9671e",
+        ter: "#fa9b30",
         contr: "#313131",
         c_button: "#ffc300",
         //darkmode
