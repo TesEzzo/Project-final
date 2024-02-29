@@ -18,6 +18,7 @@ const models = {
     Club: require("./models/Club"),
     Sport: require("./models/Sport"),
     Space: require("./models/Space"),
+    Rating: require("./models/Rating"),
 }
 
 module.exports = {

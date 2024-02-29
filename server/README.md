@@ -6,3 +6,6 @@
 - [X] Sport
 - [X] Space
 - [ ] Transaction
+- [X] Rating
+- [ ] Rating_Up_Vote
+- [ ] Rating_Down_Vote

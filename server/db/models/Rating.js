@@ -3,15 +3,24 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const {Schema, model } = mongoose;
 
-const SportSchema = new Schema({
-    name: {
-        type: String,
+const RatingSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
         required: true,
     },
-    slot_time: {
+    club: {
+        type: Schema.Types.ObjectId,
+        ref: "Club",
+        required: true,
+    },
+    rate: {
         type: Number,
         required: true,
-        enum: [30, 60],
+    },
+    content: {
+        type: String,
+        required: true,
     },
 }, {
     strict: true, //non consentire il salvataggio di dati non espressi nello schema (se il parametro non è specificato nello schema)
@@ -19,8 +28,8 @@ const SportSchema = new Schema({
     versionKey: false //se true viene aggiunta una chiave che da la versione del documento.
 });
 
-SportSchema.plugin(mongoosePaginate);
+RatingSchema.plugin(mongoosePaginate);
 
-const Sport = model("Sport", SportSchema);
+const Rating = model("Rating", RatingSchema);
 
-module.exports = Sport;
+module.exports = Rating;
