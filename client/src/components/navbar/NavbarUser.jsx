@@ -1,20 +1,12 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Test_Logo from "../../assets/Test_Logo.svg";
 
-const NavbarClub = () => {
+const NavbarUser = () => {
   const auth = useSelector((state) => state.auth);
 
   return (
     <>
       <nav className="flex flex-row justify-between fixed items-center gap-4 h-16 w-full z-[999] bg-[#17202A] font-semibold text-white">
-        <div className="flex flex-row items-center text-wrap my-16 ml-64">
-          <img src={Test_Logo} alt="" className=" flex max-h-8" />{" "}
-          {/*//NOTE - img club */}
-          <h1 className="text-wrap ">Nome azienda</h1> {/*//NOTE - name club */}
-          <img src={Test_Logo} alt="" className="flex max-h-6" />{" "}
-          {/*//NOTE - subscription */}
-        </div>
 
         <div className="flex flex-row-reverse">
           {auth.token != null ? (
@@ -50,4 +42,4 @@ const NavbarClub = () => {
   );
 };
 
-export default NavbarClub;
+export default NavbarUser;

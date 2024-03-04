@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes animationPadel {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(-214px, -110px);
+    }
+}
+
+@keyframes animationBasket {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(-170px, 20px);
+    }
+}
+
+@keyframes animationSoccer {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(-50px, 90px);
+    }
+}
+
+@keyframes animationVolley {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(70px, 22px);
+    }
+}
+
+@keyframes animationTennis {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(114px, -108px);
+    }
+}
+
+.globe:hover .padel {
+    display: block;
+    animation: fadeIn 1.5s, animationPadel 1.5s;
+}
+
+.globe:hover .basket {
+    display: block;
+    animation: fadeIn 1.5s, animationBasket 1.5s;
+}
+
+.globe:hover .soccer {
+    display: block;
+    animation: fadeIn 1.5s, animationSoccer 1.5s;
+}
+
+.globe:hover .volley {
+    display: block;
+    animation: fadeIn 1.5s, animationVolley 1.5s;
+}
+
+.globe:hover .tennis {
+    display: block;
+    animation: fadeIn 1.5s, animationTennis 1.5s;
+}

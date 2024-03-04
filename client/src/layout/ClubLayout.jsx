@@ -3,7 +3,7 @@ import NavbarClub from "../components/navbar/NavbarClub";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 
-const ClubLayout = () => {
+const DefaultLayout = () => {
   return (
     <>
       <div className="flex flex-row">
@@ -18,4 +18,4 @@ const ClubLayout = () => {
   );
 };
 
-export default ClubLayout;
+export default DefaultLayout;

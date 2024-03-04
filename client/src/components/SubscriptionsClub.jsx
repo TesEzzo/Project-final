@@ -3,6 +3,7 @@ import red_x from "../assets/subscriptions/red_x.svg";
 import medal_gold from "../assets/subscriptions/medal-gold.svg";
 import medal_silver from "../assets/subscriptions/medal-silver.svg";
 import medal_bronze from "../assets/subscriptions/medal-bronze.svg";
+import { Link } from "react-router-dom";
 
 const SubscriptionsClub = () => {
   return (
@@ -61,10 +62,12 @@ const SubscriptionsClub = () => {
               <p>Sponsorizzazioni eventi</p>
               <img src={red_x} alt="red_x" className="w-[30px] h-[30px]" />
             </div>
-            <button className="flex flex-row justify-center items-center mt-2 hover:shadow-emerald-800 bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
+            <Link>
+            <button className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
               <p className="p-2">Abbonati</p>{" "}
               {/* //NOTE - Link per il checkout silver */}
             </button>
+            </Link>
           </div>
 
           <div className="flex flex-col items-center border-2 rounded-3xl border-none w-[250px] h-[400px] shadow-xl bg-white transition ease-in-out delay-100">
@@ -98,10 +101,12 @@ const SubscriptionsClub = () => {
                 className="w-[30px] h-[30px]"
               />
             </div>
-            <button className="flex flex-row justify-center items-center mt-2 hover:shadow-emerald-800 bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
+            <Link>
+            <button className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
               <p className="p-2">Abbonati</p>{" "}
               {/* //NOTE - Link per il checkout gold */}
             </button>
+            </Link>
           </div>
         </div>
       </div>

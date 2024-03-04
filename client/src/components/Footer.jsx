@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-contr h-max w-full mt-10 text-pri">
+      <footer className="bg-[#17202A] h-max w-full mt-10 text-pri">
         {auth.token != null ? <Link to="/whoAreWe">Chi Siamo?</Link> : ""}
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="flex justify-between max-md:flex-col max-md:items-center">
