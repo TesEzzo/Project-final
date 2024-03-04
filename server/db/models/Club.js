@@ -21,13 +21,15 @@ const ClubSchema = new Schema({
         type: {
             first_name: {
                 type: String,
-                required: true,
             },
             last_name: {
                 type: String,
-                required: true,
             },
-        }
+        },
+        default: {
+            first_name: null,
+            last_name: null,
+        },
     },
     info: {
         type: {
@@ -56,7 +58,8 @@ const ClubSchema = new Schema({
                     days: String,
                 },
             },
-        }
+        },
+        required: true,
     },
     business_info: {
         type: {
@@ -76,21 +79,39 @@ const ClubSchema = new Schema({
                 type: String,
                 required: true,
             },
-        }
+        },
+        required: true,
     },
     location: {
-        address: {
-            type: String,
-            required: true,
+        type: {
+            address: {
+                type: String,
+                required: true,
+            },
+            num: {
+                type: Number,
+                required: true,
+            },
+            city: {
+                type: String,
+                required: true,
+            },
+            cap: {
+                type: String,
+                required: true,
+            },
+            coordinates: {
+                type: {
+                    lat: String,
+                    lon: String,
+                },
+                default: {
+                    lat: null,
+                    lon: null,
+                },
+            },
         },
-        city: {
-            type: String,
-            required: true,
-        },
-        cap: {
-            type: String,
-            required: true,
-        },
+        required: true,
     },
     rating_average: {
         type: Number,

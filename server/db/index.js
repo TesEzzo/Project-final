@@ -19,6 +19,8 @@ const models = {
     Sport: require("./models/Sport"),
     Space: require("./models/Space"),
     Rating: require("./models/Rating"),
+    Event: require("./models/Event"),
+    Transaction: require("./models/Transaction"),
 }
 
 module.exports = {
