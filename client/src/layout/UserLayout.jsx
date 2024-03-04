@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
-import NavbarNotLogged from "../components/navbar/NavbarNotLogged";
+import NavbarUser from "../components/navbar/NavbarUser";
 
-const ClubLayout = () => {
+const UserLayout = () => {
   return (
     <>
-      <NavbarNotLogged />
+      <NavbarUser />
     <div className="pt-16">
       <Outlet />
       <Footer />
@@ -14,4 +14,4 @@ const ClubLayout = () => {
   );
 };
 
-export default ClubLayout;
+export default UserLayout;
