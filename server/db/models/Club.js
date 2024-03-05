@@ -89,7 +89,7 @@ const ClubSchema = new Schema({
                 required: true,
             },
             num: {
-                type: Number,
+                type: String,
                 required: true,
             },
             city: {

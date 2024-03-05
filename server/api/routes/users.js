@@ -58,7 +58,7 @@ app.post("/", async (req, res) => {
     first_name: Joi.string().required(),
     last_name: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    password: Joi.string().min(6).alphanum().required(),
     profile_img: Joi.string().optional(),
   });
 
@@ -69,8 +69,10 @@ app.post("/", async (req, res) => {
 
     const user = await new User(data).save();
 
+    const { password, ...userInfo } = user.toObject();
+
     return res.status(201).json({
-        ...user.toObject()
+      ...userInfo
     });
   } catch (error) {
     return outError(res, { error });
