@@ -17,8 +17,8 @@ const ProfileUser = () => {
             </pre>
             <button onClick={handleLogout}>LOGOUT</button> */}
       <div className="flex flex-row justify-center">
-        <div className="flex flex-col   rounded-3xl shadow-xl bg-white my-16 w-3/4 p-16">
-          <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex flex-col rounded-3xl shadow-xl bg-white my-16 h-max w-3/4 p-16">
+          <div className="flex flex-row items-center h-full w-full gap-10">
             <div className="max-w-32 max-h-32 rounded-full">
               <img
                 src={Test_logo}
@@ -62,16 +62,16 @@ const ProfileUser = () => {
                 />
               </div>
             </div>
-            <div>dwa</div>
-            <div>dwa</div>
           </div>
-          <div>
+          <div className="flex flex-row h-full">
             <textarea
               className="border-2 border-sec rounded"
               cols="50"
               rows="14"
               placeholder="Descrizione"
             ></textarea>
+            <div className="h-[500px] border-2 border-sec rounded mx-10">Lista amici</div>
+            <div className="h-[500px] border-2 border-sec rounded mx-10">Richieste di amicizia ricevute/inviate</div>
           </div>
         </div>
       </div>

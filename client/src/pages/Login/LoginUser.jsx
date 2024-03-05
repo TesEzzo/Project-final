@@ -3,6 +3,7 @@ import { login } from "../../store/reducers/authSlice";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Constants from "../../constants";
 
 const LoginUser = () => {
   const dispatch = useDispatch();
@@ -23,15 +24,15 @@ const LoginUser = () => {
     e.preventDefault();
 
     try {
-      const results = await axios({
-        url: "http://localhost:3000/users/login",
+      const response = await axios({
+        url: `${Constants.API_HOST}/auth/users/token`,
         method: "POST",
         data: form
       });
 
-      const data = results.data; // -> { user: { ... }, token: ... }
+      const data = response.data; 
       dispatch(login(data));
-      navigate("/profile");
+      navigate("/services/profile");
     } catch (err) {
       console.error(err);
     }

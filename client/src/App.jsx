@@ -13,6 +13,9 @@ import RegReservation from "./pages/tycoon/RegReservation";
 import UserLayout from "./layout/UserLayout";
 import RegistrationUser from "./pages/RegistrationForm/RegistrationUser";
 import RegistrationClub from "./pages/RegistrationForm/RegistrationClub";
+import HomeUser from "./pages/home/HomeUser";
+import SubCheckoutGold from "./pages/Subscriptions/SubCheckoutGold";
+import SubCheckoutSilver from "./pages/Subscriptions/SubCheckoutSilver";
 
 const ProtectedRoute = ({ children, identity }) => {
   const auth = useSelector((state) => state.auth);
@@ -37,7 +40,7 @@ const App = () => {
           <Route path="registration" element={<RegistrationUser />} />
           <Route path="whoAreWe" element={<WhoAreWe />} />
         </Route>
-        {/* <Route
+        <Route
           path="/services"
           element={
             <ProtectedRoute identity="user">
@@ -50,7 +53,7 @@ const App = () => {
           <Route path="whoAreWe" element={<WhoAreWe />} />
         </Route>
         <Route
-          path="/club"
+          path="/clubs"
           element={
             <ProtectedRoute identity="club">
               <ClubLayout />
@@ -62,7 +65,7 @@ const App = () => {
           <Route path="whoAreWe" element={<WhoAreWe />} />
           <Route path="subCheckoutSilver" element={<SubCheckoutSilver />} />
           <Route path="subCheckoutGold" element={<SubCheckoutGold />} />
-        </Route> */}
+        </Route>
       </Routes>
     </>
   );
