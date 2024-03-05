@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs");
 const { Club } = require("../../db");
 const { outError } = require("../../utility/errors");
 
+const { getCoordsFromAddress } = require("../../utility/address");
+
 /**
  * @path /api/clubs
  */
@@ -61,16 +63,16 @@ app.post("/", async (req, res) => {
   const schema = Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    password: Joi.string().min(6).alphanum().required(),
     owner: Joi.object().keys({
         first_name: Joi.string().optional(),
         last_name: Joi.string().optional(),
     }).optional(),
-    type: Joi.object().keys({
+    info: Joi.object().keys({
         description: Joi.string().optional(),
         logo: Joi.string().optional(),
         cover: Joi.string().optional(),
-        sports: Joi.string().required(),
+        sports: Joi.array().items(Joi.string()).required(),
         opening: Joi.object().keys({
             hours: Joi.string().optional(),
             days: Joi.string().optional(),
@@ -102,10 +104,19 @@ app.post("/", async (req, res) => {
 
     data.password = bcrypt.hashSync(data.password);
 
-    const user = await new User(data).save();
+    data.location.coordinates = await getCoordsFromAddress({
+      address: data.location.address,
+      city: data.location.city,
+      num: data.location.num,
+      cap: data.location.cap
+    });
+
+    const club = await new Club(data).save();
+
+    const { password, ...clubInfo } = club.toObject();
 
     return res.status(201).json({
-        ...user.toObject()
+      ...clubInfo
     });
   } catch (error) {
     return outError(res, { error });

@@ -7,6 +7,11 @@ const app = express.Router();
 app.use("/users", require("./routes/users"));
 
 /**
+ * @path /api/clubs
+ */
+app.use("/clubs", require("./routes/clubs"));
+
+/**
  * @path /api/me
  */
 app.use("/me", require("./routes/me"));

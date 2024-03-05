@@ -7,6 +7,7 @@ const SportSchema = new Schema({
     name: {
         type: String,
         required: true,
+        unique: true
     },
     slot_time: {
         type: Number,
