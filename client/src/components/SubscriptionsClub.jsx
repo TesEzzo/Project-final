@@ -64,7 +64,7 @@ const SubscriptionsClub = () => {
             </div>
             <Link>
             <button className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
-              <p className="p-2">Abbonati</p>{" "}
+              <Link to="subCheckoutSilver" className="p-2">Abbonati</Link>{" "}
               {/* //NOTE - Link per il checkout silver */}
             </button>
             </Link>
@@ -103,7 +103,7 @@ const SubscriptionsClub = () => {
             </div>
             <Link>
             <button className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">
-              <p className="p-2">Abbonati</p>{" "}
+              <Link to="subCheckoutGold" className="p-2">Abbonati</Link>{" "}
               {/* //NOTE - Link per il checkout gold */}
             </button>
             </Link>

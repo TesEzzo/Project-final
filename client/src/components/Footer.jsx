@@ -9,11 +9,10 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-[#17202A] h-max w-full mt-10 text-pri">
-        {auth.token != null ? <Link to="/whoAreWe">Chi Siamo?</Link> : ""}
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="flex justify-between max-md:flex-col max-md:items-center">
             <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
+              <a href="/" className="flex items-center">
                 <img
                   src={logo}
                   className="h-[90px] w-[110px] mr-5"
@@ -80,9 +79,9 @@ const Footer = () => {
           <div className="flex items-center justify-between">
             <span className="text-sm text-white mr-5">
               © 2024{" "}
-              <a href="#" className="hover:underline">
+              <Link to="whoAreWe" className="hover:underline">
                 FS19™
-              </a>
+              </Link>
               . All Rights Reserved.
               <div className="flex flex-row mt-5 items-center">
                 <div className="relative">

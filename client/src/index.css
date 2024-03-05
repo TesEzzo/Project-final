@@ -39,6 +39,7 @@
 
     100% {
         transform: translate(-50px, 90px);
+        
     }
 }
 
@@ -62,27 +63,32 @@
     }
 }
 
-.globe:hover .padel {
+.globe .padel {
     display: block;
     animation: fadeIn 1.5s, animationPadel 1.5s;
+    animation-fill-mode: forwards
 }
 
-.globe:hover .basket {
+.globe .basket {
     display: block;
     animation: fadeIn 1.5s, animationBasket 1.5s;
+    animation-fill-mode: forwards
 }
 
-.globe:hover .soccer {
+.globe .soccer {
     display: block;
     animation: fadeIn 1.5s, animationSoccer 1.5s;
+    animation-fill-mode: forwards
 }
 
-.globe:hover .volley {
+.globe .volley {
     display: block;
     animation: fadeIn 1.5s, animationVolley 1.5s;
+    animation-fill-mode: forwards
 }
 
-.globe:hover .tennis {
+.globe .tennis {
     display: block;
     animation: fadeIn 1.5s, animationTennis 1.5s;
+    animation-fill-mode: forwards
 }

@@ -6,6 +6,7 @@ import padel_racket from "../../assets/landingDefault/padel_racket.png";
 import tennis_racket from "../../assets/landingDefault/tennis_racket.png";
 import volleyball from "../../assets/landingDefault/volleyball.png";
 import { Map } from "../../components/Map";
+import AdsCard from "../../components/AdsCard";
 
 const HomeUser = () => {
 
@@ -13,6 +14,7 @@ const HomeUser = () => {
     <>
       <header className="flex flex-col items-center w-full p-16 overflow-x-hidden">
         <div className="flex items-center flex-col">
+        <h1 className="font-anton text-9xl mt-10">Games Plan Italia</h1>
           <p className="font-poppins text-3xl mt-10">
             {" "}
             {/* //NOTE - nome utente */}
@@ -20,17 +22,7 @@ const HomeUser = () => {
           </p>
         </div>
         <div className="flex justify-center mt-10">
-          <img src={sportHeader} alt="test" />
-        </div>
-        <div className="flex flex-col items-center mt-10">
-          <h2 className="font-anton text-4xl">
-            Rivoluziona il tuo modo di giocare
-          </h2>
-        </div>
-      </header>
-      <main className="flex flex-col items-center w-full pt-20 overflow-x-hidden">
-        <section className="m-10 w-max h-max">
-          <div className="globe relative h-max w-max">
+        <div className="globe relative h-max w-max">
             <div>
               <img
                 src={globo_def}
@@ -54,12 +46,25 @@ const HomeUser = () => {
               <img src={soccer_ball} alt="globe" />
             </div>
           </div>
+        </div>
+        <div className="flex flex-col items-center mt-10">
+          <h2 className="font-anton text-4xl">
+            Rivoluziona il tuo modo di giocare
+          </h2>
+        </div>
+      </header>
+      <main className="flex flex-col items-center w-full pt-2 overflow-x-hidden">
+        <section className="mb-10 w-max h-max">
+          <img src={sportHeader} alt="" />
         </section>
         <section>
           <div>
             <Map />
           </div>
         </section>
+        <div>
+          <AdsCard />
+        </div>
       </main>
     </>
   );

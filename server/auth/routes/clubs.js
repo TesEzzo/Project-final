@@ -33,7 +33,9 @@ app.post("/token", async (req, res) => {
 
         const token = generateToken({ _id: club._id, email: club.email, identity: "club" });
 
-        return res.status(201).json({ token });
+        delete club.password;
+
+        return res.status(201).json({ token, club, identity: "club" });
     } catch (error) {
         return outError(res, { error });
     }
