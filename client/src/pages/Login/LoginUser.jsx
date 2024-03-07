@@ -45,7 +45,7 @@ const LoginUser = () => {
         {/* sostituire il link dell'img della section con il percorso nell'assets */}
         <div className="flex flex-col items-center justify-center md:h-full py-0 h-full w-2/4">
           <div className="w-full md:mt-0 xl:p-0 h-full">
-            <div className="p-[38px] space-y-4 md:space-y-6 bg-white bg-opacity-40 shadow h-full w-full flex flex-col justify-between">
+            <div className="p-[38px] space-y-4 md:space-y-6 bg-white shadow h-full w-full flex flex-col justify-between rounded-r-md">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-[#313131] md:text-2xl text-center pt-[30px]">
                 Accedi al tuo account
               </h1>
