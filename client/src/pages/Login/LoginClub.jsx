@@ -3,6 +3,7 @@ import { login } from "../../store/reducers/authSlice";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Constants from "../../constants";
 
 const LoginClub = () => {
   const dispatch = useDispatch();
@@ -23,15 +24,15 @@ const LoginClub = () => {
     e.preventDefault();
 
     try {
-      const results = await axios({
-        url: "http://localhost:3000/users/loginClub",
+      const response = await axios({
+        url: `${Constants.API_HOST}/auth/clubs/token`,
         method: "POST",
         data: form
       });
 
-      const data = results.data; // -> { user: { ... }, token: ... }
+      const data = response.data;
       dispatch(login(data));
-      navigate("/profile");
+      navigate("/clubs/profile");
     } catch (err) {
       console.error(err);
     }
@@ -102,7 +103,7 @@ const LoginClub = () => {
         {/* sostituire il link dell'img della section con il percorso nell'assets */}
         <div className="flex flex-col items-center justify-center md:h-full h-full w-[50%]">
           <div className="w-full md:mt-0 xl:p-0 h-full">
-            <div className="p-[38px] space-y-4 md:space-y-6 bg-white bg-opacity-40 shadow h-full w-full flex flex-col justify-between">
+            <div className="p-[38px] space-y-4 md:space-y-6 bg-white shadow h-full w-full flex flex-col justify-between rounded-l-md">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-[#313131] md:text-2xl text-center pt-[30px]">
                 Accedi al tuo account
               </h1>
@@ -138,7 +139,7 @@ const LoginClub = () => {
                   <div className="w-full flex flex-col justify-center items-center">
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
                       font-medium rounded-lg text-sm px-10 py-2.5 mb-2 focus:outline-none w-fit">
-                        <Link to="/loginClub">Accedi</Link>
+                        Accedi
                     </button>
                     <Link to="/login" className="text-sm font-medium text-slate-900 mx-2 hover:underline hover:text-blue-900">
                       Accedi come utente
