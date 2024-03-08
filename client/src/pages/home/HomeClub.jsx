@@ -18,7 +18,7 @@ const HomeClub = () => {
       <main>
         <section className="mb-8">
           <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
+            <a href="">
               <img
                 className="rounded-t-lg"
                 src="/docs/images/blog/image-1.jpg"
