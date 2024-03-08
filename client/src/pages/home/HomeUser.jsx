@@ -7,6 +7,7 @@ import tennis_racket from "../../assets/landingDefault/tennis_racket.png";
 import volleyball from "../../assets/landingDefault/volleyball.png";
 import { Map } from "../../components/Map";
 import AdsCard from "../../components/AdsCard";
+import { Link } from "react-router-dom";
 
 const HomeUser = () => {
 
@@ -30,21 +31,21 @@ const HomeUser = () => {
                 className="w-[300px] h-[300px]"
               />
             </div>
-            <div className="padel w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
+            <Link to="padelRules" className="padel w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
               <img src={padel_racket} alt="globe" />
-            </div>
-            <div className="tennis w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
+            </Link>
+            <Link to="tennisRules" className="tennis w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
               <img src={tennis_racket} alt="globe" />
-            </div>
+            </Link>
             <div className="basket w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
               <img src={basketball} alt="globe" />
             </div>
             <div className="volley w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
               <img src={volleyball} alt="globe" />
             </div>
-            <div className="soccer w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
+            <Link to="footballRules" className="soccer w-[100px] h-[100px] hidden absolute top-2/4 left-2/4 -translate-y-1/2 -translate-x-1/2">
               <img src={soccer_ball} alt="globe" />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col items-center mt-10">

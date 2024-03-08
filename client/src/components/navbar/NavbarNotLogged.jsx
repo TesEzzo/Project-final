@@ -13,7 +13,7 @@ const NavbarNotLogged = () => {
 
   return (
     <>
-      <nav className="flex flex-row-reverse justify-between fixed items-center gap-4 h-16 w-full z-[999] bg-[#17202A] font-semibold text-white">
+      <nav className="flex flex-row-reverse justify-between fixed items-center gap-4 h-16 w-full z-[999] bg-sec font-semibold text-white">
         <div className="flex flex-row-reverse">
           {auth.token != null ? (
             ""
