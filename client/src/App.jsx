@@ -16,6 +16,9 @@ import RegistrationClub from "./pages/RegistrationForm/RegistrationClub";
 import HomeUser from "./pages/home/HomeUser";
 import SubCheckoutGold from "./pages/Subscriptions/SubCheckoutGold";
 import SubCheckoutSilver from "./pages/Subscriptions/SubCheckoutSilver";
+import PadelR from "./pages/rulesSports/PadelR";
+import FootballR from "./pages/rulesSports/FootballR";
+import TennisR from "./pages/rulesSports/TennisR";
 
 const ProtectedRoute = ({ children, identity }) => {
   const auth = useSelector((state) => state.auth);
@@ -51,6 +54,9 @@ const App = () => {
           <Route path="" element={<HomeUser />} />
           <Route path="profile" element={<ProfileUser />} />
           <Route path="whoAreWe" element={<WhoAreWe />} />
+          <Route path="padelRules" element={<PadelR />} />
+          <Route path="footballRules" element={<FootballR />} />
+          <Route path="tennisRules" element={<TennisR />} />
         </Route>
         <Route
           path="/clubs"
