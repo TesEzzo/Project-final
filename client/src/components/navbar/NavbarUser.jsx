@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/reducers/authSlice";
+import logo_site from "../../assets/logo_def.png";
 
 const NavbarUser = () => {
   const dispatch = useDispatch();
-
-  const auth = useSelector((state) => state.auth);
 
   const handleLogout= () => {
     dispatch(logout());
@@ -13,31 +12,26 @@ const NavbarUser = () => {
 
   return (
     <>
-      <nav className="flex flex-row-reverse justify-between fixed items-center gap-4 h-16 w-full z-[999] bg-sec font-semibold text-white">
+      <nav className="flex flex-row justify-between fixed items-center gap-4 h-16 w-full z-[9999] bg-sec font-semibold text-white">
+        <div className="h-full flex flex-row items-center ">
+          <img src={logo_site} alt="" className="h-full"/>
+          <h1 className="text-4xl font-semibold">Games Plan Italia</h1>
+        </div>
 
-        <div className="flex flex-row-reverse">
-          {auth.token != null ? (
-            ""
-          ) : (
-            <Link to="/whoAreWe">
-              <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
-                Chi siamo?
-              </button>
-            </Link>
-          )}
-           <button onClick={handleLogout} className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
-              LOGOUT
-            </button>
-          <Link to="/services/profile">
-            <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
-              PROFILE
-            </button>
-          </Link>
+        <div className="flex flex-row">
           <Link to="/services">
             <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
               HOME
             </button>
           </Link>
+          <Link to="/services/profile">
+            <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
+              PROFILE
+            </button>
+          </Link>
+           <button onClick={handleLogout} className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
+              LOGOUT
+            </button>
         </div>
       </nav>
     </>

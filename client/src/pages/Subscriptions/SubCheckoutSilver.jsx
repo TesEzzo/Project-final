@@ -34,7 +34,7 @@ const SubCheckoutSilver = () => {
 
     return (
         <>
-            <div className="flex justify-center ">
+            <div className="flex justify-center h-screen">
                 <div className="flex flex-row justify-center items-center">
                     <div className="flex flex-col items-center border-2 rounded-3xl border-none w-[250px] h-[400px] shadow-md bg-white mt-2 ">
                         <img
