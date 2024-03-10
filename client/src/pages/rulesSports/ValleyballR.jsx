@@ -1,12 +1,13 @@
 import padel from "../../assets/rulesSport/padel.jpg";
 import rArrow from "../../assets/rulesSport/right-arrow.png";
 import lArrow from "../../assets/rulesSport/left-arrow.png";
-const PadelR = () => {
+const ValleyR = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 100; // Altezza della navbar in pixel
-      const offsetTop = element.offsetTop - navbarHeight;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
       const duration = 800; // Durata dello scroll in millisecondi
       const startTime = performance.now();
 
@@ -15,7 +16,9 @@ const PadelR = () => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         const easedProgress = easeInOutQuad(progress);
-        window.scrollTo(0, offsetTop * easedProgress);
+        const newPosition =
+          offsetTop * easedProgress + (1 - easedProgress) * window.pageYOffset;
+        window.scrollTo(0, newPosition);
 
         if (elapsedTime < duration) {
           requestAnimationFrame(animateScroll);
@@ -32,24 +35,6 @@ const PadelR = () => {
         <div className="flex flex-row w-full h-screen">
           <div className="flex flex-col items-center justify-between w-2/4 bg-gradient-to-b from-white to-ter py-20 h-screen text-center">
             <h2 className="font-anton text-8xl">Regole del Padel</h2>
-            <div className="flex flex-row justify-between items-center w-full group">
-              <img
-                src={rArrow}
-                alt=""
-                className="w-8 h-8 opacity-0 transform transition-transform group-hover:translate-x-[19.7rem] max-2xl:group-hover:translate-x-[11.8rem] max-lg:group-hover:translate-x-[6.7rem] group-hover:opacity-100 duration-500"
-              />
-              <h3
-                className="font-anton text-4xl cursor-pointer mx-8 max-lg:text-2xl max-md:text-xl"
-                onclick={() => scrollToSection("inizio")}
-              >
-                INIZIO
-              </h3>
-              <img
-                src={lArrow}
-                alt=""
-                className="w-8 h-8 opacity-0 transform transition-transform group-hover:-translate-x-[19.7rem] max-2xl:group-hover:-translate-x-[11.8rem] max-lg:group-hover:-translate-x-[6.7rem] group-hover:opacity-100 duration-500"
-              />
-            </div>
 
             <div className="flex flex-row justify-between items-center w-full group">
               <img
@@ -61,7 +46,7 @@ const PadelR = () => {
                 className="font-anton text-4xl cursor-pointer mx-8 max-lg:text-2xl max-md:text-xl"
                 onClick={() => scrollToSection("servizio")}
               >
-                IL SERVIZIO
+                IL FONDAMENTALI
               </h3>
               <img
                 src={lArrow}
@@ -80,7 +65,7 @@ const PadelR = () => {
                 className="font-anton text-4xl cursor-pointer mx-8 max-lg:text-2xl max-md:text-xl"
                 onClick={() => scrollToSection("palla-racchetta")}
               >
-                LA PALLA E LA RACCHETTA DA PADEL
+                BATTUTA, PUNTEGGI E TECNICHE
               </h3>
               <img
                 src={lArrow}
@@ -99,7 +84,7 @@ const PadelR = () => {
                 className="font-anton text-4xl cursor-pointer mx-8 max-lg:text-2xl max-md:text-xl"
                 onClick={() => scrollToSection("punteggio")}
               >
-                IL SISTEMA DI PUNTEGGIO NEL PADEL
+                LE PRINCIPALI INFRAZIONI
               </h3>
               <img
                 src={lArrow}
@@ -107,219 +92,297 @@ const PadelR = () => {
                 className="w-8 h-8 opacity-0 transform transition-transform group-hover:-translate-x-[7.2rem] max-2xl:group-hover:-translate-x-[3.7rem] max-[1300px]:group-hover:-translate-x-[1.4rem] max-lg:group-hover:-translate-x-[2.1rem] group-hover:opacity-100 duration-500"
               />
             </div>
-
-            <div className="flex flex-row justify-between items-center w-full group">
-              <img
-                src={rArrow}
-                alt=""
-                className="w-8 h-8 opacity-0 transform transition-transform group-hover:translate-x-[9.3rem] max-2xl:group-hover:translate-x-[3.7rem] max-[1300px]:group-hover:translate-x-[2.3rem] max-lg:group-hover:translate-x-[2.2rem] group-hover:opacity-100 duration-500"
-              />
-              <h3
-                className="font-anton text-4xl cursor-pointer mx-8 max-lg:text-2xl max-md:text-xl"
-                onClick={() => scrollToSection("punti-falli")}
-              >
-                I PUNTI BUONI, CATTIVI E I FALLI
-              </h3>
-              <img
-                src={lArrow}
-                alt=""
-                className="w-8 h-8 opacity-0 transform transition-transform group-hover:-translate-x-[9.3rem] max-2xl:group-hover:-translate-x-[3.7rem] max-[1300px]:group-hover:-translate-x-[2.3rem] max-lg:group-hover:-translate-x-[2.2rem] group-hover:opacity-100 duration-500"
-              />
-            </div>
           </div>
           <img src={padel} alt="" className="w-2/4 h-screen" />
-        </div>
-        <div className="flex flex-col items-center text-justify w-2/4 mt-16">
-          <h4 id="inizio" className="font-anton text-3xl">
-            INIZIO
-          </h4>
-          <p className="font-medium my-8">
-            Il padel è lo sport che ha generato un'enorme euforia tra migliaia
-            di persone in tutto il mondo. Prima di scendere in campo però, è
-            importante che tu conosca le regole del padel, soprattutto se hai
-            intenzione di giocare qualche torneo nel prossimo futuro.
-          </p>
-          <p className="font-medium">
-            Le regole del padel sono stabilite dalla Federazione Internazionale
-            di Padel, l'organizzazione incaricata di regolare questo sport.
-            Tuttavia, il regolamento, che si può trovare sul sito ufficiale
-            della Federazione, è enorme. Ecco perché, invece di perdere tempo
-            llegendo righe interminabili, vi spiegheremo le regole principali e
-            i consigli più preziosi per il padel, in modo che possiate giocare
-            una partita in modo regolamentare.
-          </p>
-        </div>
-
-        <div
-          id="servizio"
-          className="flex flex-col items-center text-justify w-2/4 mt-16"
-        >
-          <h4 className="font-anton text-3xl">IL SERVIZIO</h4>
-          <p className="font-medium my-8">
-            Il servizio è uno dei momenti più importanti della partita perché è
-            quello che apre il game. Per quanto riguarda il servizio, il padel
-            ha regole molto specifiche che lo differenziano dal tennis. In primo
-            luogo, è fondamentale che il giocatore{" "}
-            <strong>
-              stia dietro la linea di servizio, quindi non può calpestarla
-            </strong>{" "}
-            durante il colpo perché verrebbe contato come un punto perso. Prima
-            di colpire la palla e mandarla dall'altra parte del campo, bisogna
-            farla rimbalzare una volta sul terreno di gioco e successivamente
-            eseguire il colpo. Infine, è necessario che il contatto della
-            racchetta con la palla avvenga al massimo{" "}
-            <strong>all'altezza del bacino</strong>.
-          </p>
-          <p className="font-medium">
-            Quando la palla viene colpita al servizio, deve attraversare l'altro
-            lato del campo senza toccare la rete. Al minimo tocco, il servizio
-            verrebbe considerato nullo. Inoltre, il servizio deve essere
-            effettuato nella direzione opposta, cioè in{" "}
-            <strong>diagonale</strong>. Per far si che il servizio sia buono, è
-            anche necessario che la palla rimbalzi all'interno del campo
-            avversario, ovvero dentro la{" "}
-            <strong>linea di servizio avversaria</strong>, se rimbalza al di
-            fuori, o colpisce direttamente un muro o una parete, il servizio non
-            è valido. Ovviamente il servizio che rimbalzerà all'interno del
-            campo avversario non potrà mai colpire con un secondo rimbalzo la
-            zona della griglia, al contrario di una parete laterale o di fondo
-            la griglia è considerata fuori campo.
-          </p>
         </div>
 
         <div className="flex flex-col items-center text-justify w-2/4 mt-16">
           <h4 id="palla-racchetta" className="font-anton text-3xl">
-            LA PALLA E LA RACCHETTA DA PADEL
+            IL FONDAMENTALI
           </h4>
           <p className="font-medium my-8">
-            Le caratteristiche della palla da padel e della racchetta da padel
-            giocano ench'esse un ruolo importante nelle regole ufficiali. Questo
-            significa che devono avere qualità e caratteristiche specifiche per
-            essere ufficialmente accettate. Nel regolamento si specifica che “La
-            palla deve essere una <strong>sfera di gomma</strong> con una
-            superficie esterna uniforme di colore{" "}
-            <strong>bianco o giallo</strong>.
+            Il terreno di gioco è un rettangolo di m 18 x 9, diviso in due metà
+            campo dalla rete e dalla linea di metà campo. A sua volta ciascuna
+            metà campo è suddivisa in due zone:{" "}
+            <strong>la zona d'attacco</strong> (dalla rete alla linea dei 3
+            metri) e <strong>la zona di difesa</strong>(dalla linea dei 3 metri
+            alla linea di fondo campo).
           </p>
           <p className="font-medium">
-            Il suo diametro dovrebbe essere compreso tra{" "}
-            <strong>6,35 e 6,77 cm</strong> e il suo peso tra{" "}
-            <strong>56,0 e 59,4 grammi</strong>. Deve avere un rimbalzo tra{" "}
-            <strong>135 e 145 cm</strong>
-            quando viene lasciata cadere su una superficie dura da 2,54 m. La
-            palla deve avere una <strong>pressione interna</strong> compresa tra{" "}
-            <strong>4,6 kg e 5,2 kg per 2,54 centimetri quadrati</strong>.
+            Vi è un'ulteriore suddivisione teorica (in quanto non delimitata da
+            linee tracciate sul campo) di ogni metà campo in{" "}
+            <strong>6 zone numerate</strong>: si assegna il numero{" "}
+            <strong>1</strong> alla zona di difesa a destra, il numero{" "}
+            <strong>2</strong> alla zona di attacco a destra e si prosegue in
+            senso antiorario fino alla
+            <strong>zona 6</strong>, corrispondente a quella centrale di difesa.
           </p>
           <p className="font-medium my-8">
-            Per quanto riguarda la racchetta, le regole affermano che “La
-            racchetta è composta da due parti: testa e manico”.
+            La rete è disposta ad un'altezza di 2,43 m per gli uomini e di 2,24
+            m per le donne (sono previste altezze inferiori per le categorie
+            giovanili).
           </p>
-          <ul className="list-disc list-outside font-medium">
-            <li className="mb-6">
-              Manico: <strong>lunghezza massima</strong>: 20 cm,{" "}
-              <strong>larghezza massima</strong> (compreso il ponte, escluso lo
-              spazio vuoto tra i due bracci): 50 mm,{" "}
-              <strong>spessore massimo</strong>: 50 mm.
-            </li>
-            <li>
-              Testa: lunghezza variabile. La lunghezza della testa più la
-              lunghezza del manico non può superare i 45,5 cm, larghezza
-              massima: 26 cm, spessore massimo: 38 mm. La lunghezza totale della
-              racchetta, testa più manico, non può superare i{" "}
-              <strong>45,5 cm</strong>.
-            </li>
-          </ul>
+          <p className="font-medium">
+            Ogni squadra in campo è formata da <strong>6 giocatori</strong>. I
+            ruoli dei 6 giocatori sono:{" "}
+            <strong>palleggiatore, centrale, schiacciatore</strong>(chiamato
+            anche "ala" o "martello"), <strong>opposto e libero</strong>. Il
+            “libero” è il giocatore che indossa una maglia di colore diverso, ha
+            un ruolo difensivo, non può battere, fare muro o compiere azioni
+            d'attacco (se non in casi eccezionali dalla seconda linea e con i
+            piedi ben fissi al terreno di gioco).
+          </p>
+          <p className="font-medium my-8">
+            Lo scopo del gioco è realizzare punti facendo cadere la palla nel
+            campo avversario (fase di attacco) ed impedendo che l'altra squadra
+            faccia altrettanto (fase difensiva).
+          </p>
         </div>
 
         <div className="flex flex-col items-center text-justify w-2/4 mt-16">
           <h4 id="punteggio" className="font-anton text-3xl">
-            IL SISTEMA DI PUNTEGGIO NEL PADEL
+            BATTUTA, PUNTEGGI E TECNICHE
           </h4>
-          <p className="font-medium my-8">
-            Questo sistema è molto simile a quello del tennis. Il primo punto
-            equivale a <strong>15 punti</strong>, il secondo a{" "}
-            <strong>30</strong>, il terzo a 40 e il quarto{" "}
-            <strong>è il punto che decide il game</strong>. Questo cambia solo
-            se il punteggio è di parità a 40. In questo caso, il quarto punto
-            diventa <strong>un punto di vantaggio</strong>, per poter chiudere
-            il gioco quindi, è necessario vincere due punti consecutivi.
-          </p>
-          <p className="font-medium mb-8">
-            Le partite di padel sono composte da{" "}
-            <strong>set e game(giochi)</strong>. Generalmente, si gioca{" "}
-            <strong>il meglio di tre set</strong>, e ognuno di questi set è
-            composto da game. Affinché una squadra vinca un set, è necessario
-            <strong>vincere 6 game</strong>, mantenendo almeno un{" "}
-            <strong>vantaggio di due game</strong>. Se le squadre sono in{" "}
-            <strong>parità a 5-5</strong>, allora per vincere la partita è
-            necessario <strong>vincere 7 game</strong>, con un punteggio di 7-5.
-            Ma, se si verifica un pareggio 6-6, allora deve essere giocato
-            quello che è noto come <strong>spareggio o tie break</strong>.
-          </p>
-          <p className="font-medium">
-            In un tie break, la squadra con <strong>7 punti vince</strong>,
-            mantenendo un
-            <strong>vantaggio di due punti</strong>. Se questo vantaggio di due
-            punti non viene raggiunto, allora il tie break continuerà fino a
-            quando una delle due squadre ottiene la differenza di due punti. In
-            un tie break o spareggio non si conta più come nel game 15, 30, 40…
-            ma si conta in modo naturale a partire da{" "}
-            <strong>1, 2, 3, 4, 5, 6, 7</strong> e così via.
-          </p>
+          <div className="my-8">
+            <h5 className="font-anton text-2xl">Battuta</h5>
+            <p className="font-medium my-8">
+              La squadra che parte con il possesso di palla è la{" "}
+              <strong>squadra in battuta</strong>, mentre l'altra è chiamata{" "}
+              <strong>squadra in ricezione</strong>. Il giocatore di zona 1 si
+              porta dietro la linea di fondocampo ed, entro
+              <strong>8 secondi</strong> dal fischio dell'arbitro, mette la
+              palla in gioco effettuando la battuta o servizio. La palla deve
+              oltrepassare la rete e giungere nel campo avversario. L'azione
+              continua fin quando la palla non tocca il terreno di gioco, è
+              inviata fuori campo o è commesso un fallo. Se il punto è assegnato
+              alla squadra già al servizio, questa{" "}
+              <strong>continua a servire</strong>. Se la squadra in ricezione
+              vince l'azione, conquista oltre al punto anche il diritto a
+              servire e i suoi giocatori{" "}
+              <strong>ruotano di una posizione in senso orario</strong>.
+            </p>
+            <p className="font-medium">
+              I giocatori di seconda linea (posizioni 5, 6 e 1){" "}
+              <strong>se si trovano nella zona di attacco</strong> non possono
+              inviare la palla nel campo avversario se la colpiscono sopra
+              l'altezza della rete; possono però inviare la palla nel campo
+              avversario se la colpiscono sotto l'altezza della rete o se la
+              colpiscono mentre staccano dalla zona di difesa.
+            </p>
+          </div>
+          <div className="my-8">
+            <h5 className="font-anton text-2xl">Punteggi</h5>
+            <p className="font-medium my-8">
+              La partita è divisa in "<strong>set</strong>". Per vincere una
+              partita bisogna vincere 3 dei 5 set. Un set è vinto dalla squadra
+              che per prima arriva a{" "}
+              <strong>25 punti con uno scarto di almeno due punti</strong>. In
+              caso di parità sul punteggio di 24-24 si va avanti ad oltranza
+              finché il margine di una delle due squadre non raggiunge i due
+              punti. Nel caso si arrivi a 2 set pari, il quinto set viene
+              chiamato <strong className="italic">tie-break</strong> e viene
+              giocato ai <strong>15 punti</strong>, sempre con il vincolo dei
+              due punti di scarto. Questo sistema di regole è stato introdotto
+              nel 1998 ed è noto con il nome di{" "}
+              <strong className="italic">Rally Point System</strong>.
+            </p>
+            <div className="my-8">
+              <h5 className="font-anton text-2xl">Tecniche</h5>
+              <p className="font-medium mb-8">
+                Gli elementi tecnici fondamentali della pallavolo sono:
+              </p>
+              <ul className="list-disc list-outside font-medium">
+                <li>
+                  la <strong>battuta</strong>: è l'invio del pallone nella metà
+                  campo avversaria. Esistono diversi tipi di battuta in base a
+                  come viene colpita la palla: battuta dal basso, battuta
+                  dall'alto e battuta in salto.
+                </li>
+                <li className="my-6">
+                  il <strong>bagher</strong> o <strong>ricezione</strong>: viene
+                  usato normalmente nella fase difensiva del gioco, si effettua
+                  con le due mani ravvicinate, quasi distese in avanti, colpendo
+                  la palla con gli avambracci uniti;
+                </li>
+                <li>
+                  la <strong>schiacciata</strong>: gesto con cui si conclude
+                  l'attacco, consiste nel colpire la palla velocemente, al di
+                  sopra della rete, mandandola nel campo avversario;
+                </li>
+                <li className="my-6">
+                  il <strong>muro</strong>: è un salto a braccia alte e tese
+                  sopra la rete, serve per opporsi (per creare un muro, una
+                  barriera) alle schiacciate avversarie, può essere eseguito da
+                  un singolo giocatore, da due o da tre giocatori
+                  contemporaneamente per aumentare l'opposizione alla
+                  schiacciata;
+                </li>
+                <li>
+                  il <strong>pallonetto</strong>: è un tocco morbido della
+                  palla, serve per ingannare il muro avversario, infatti la
+                  palla dolcemente scavalca le braccia tese a murare e ricade
+                  dietro la schiena del (o dei) giocatore che sta effettuando il
+                  muro.
+                </li>
+              </ul>
+              <p className="font-medium my-8">
+                Per ogni azione di gioco, la squadra ha a disposizione{" "}
+                <strong>tre tocchi</strong> per inviare la palla nel campo
+                avversario e{" "}
+                <strong>
+                  lo stesso giocatore non può eseguire due tocchi consecutivi
+                </strong>
+                . Il tocco da parte del muro non viene conteggiato nel numero di
+                tocchi. La palla può essere colpita con{" "}
+                <strong>qualunque parte del corpo</strong>, ma non può essere
+                fermata, trattenuta o accompagnata.
+              </p>
+              <p className="font-medium mb-8">
+                Una squadra conquista un punto quando:
+              </p>
+              <ul className="list-disc list-outside font-medium">
+                <li>la palla cade a terra nel campo opposto;</li>
+                <li className="my-6">
+                  la squadra avversaria commette un fallo;
+                </li>
+                <li>la squadra avversaria riceve una penalizzazione.</li>
+              </ul>
+              <p className="font-medium my-8">
+                In ogni partita è presente un arbitro che dirige il gioco,
+                assegna i punti alle squadre e fischia gli errori.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col items-center text-justify w-2/4 mt-16">
-          <h4 id="punti-falli" className="font-anton text-3xl">
-            I PUNTI BUONI, CATTIVI E I FALLI
+        <div className="flex flex-col text-justify w-2/4 mt-16">
+          <h4 id="punti-falli" className="font-anton text-center text-3xl">
+            LE PRINCIPALI INFRAZIONI
           </h4>
           <p className="font-medium my-8">
-            Ci sono diverse situazioni in cui un punto può essere vinto o perso.
-            Come abbiamo visto prima, al servizio, la palla deve passare
-            dall'altra parte senza toccare la rete, e rimbalzando sempre prima
-            della linea di servizio avversaria. La palla{" "}
-            <strong>deve sempre colpire prima il terreno</strong> e poi
-            rimbalzare sulle pareti o sulle griglie del campo. Il giocatore
-            vince o perde il punto quando accade nei seguenti casi:
+            <strong>Falli di attacco:</strong>
           </p>
           <ul className="list-disc list-outside font-medium">
             <li className="mb-6">
-              Punto valido: La palla rimbalza sul terreno e successivamente va
-              <strong>fuori dal campo</strong>. La palla rimbalza due volte nel
-              campo dell'avversario. La palla rimbalaza sul terreno e su una
-              delle pareti (laterale o di fondo) senza che l'avversario riesca a
-              rispondere.
+              tocco di palla sopra il bordo della rete da parte di un difensore
+              in zona d'attacco;
             </li>
             <li>
-              Punto nullo: La palla <strong>tocca la rete</strong> e attraversa
-              il lato avversario del campo (non valido sul servizio). In questo
-              caso si ripete sempre che non si colpisca la rete metallica dopo
-              il rimbalzo, in quel caso non si ripete ma vale come primo
-              tentativo di servizio.
+              non è possibile attaccare quando la squadra avversaria ha
+              effettuato la battuta e la palla si trova nella zona d'attacco e
+              completamente al di sopra del bordo superiore della rete;
+            </li>
+            <li className="my-6">
+              non è possibile toccare la palla se si trova nella zona
+              avversaria;
+            </li>
+            <li className="mb-6">
+              un giocatore non può attaccare con palla completamente al di sopra
+              del bordo superiore della rete se l'ha ricevuta dal “libero” che
+              si trova in zona d'accatto;
             </li>
             <li>
-              Punto perso: Quando gli avversari mandano la palla fuori dal campo
-              o essa tocca direttamente un muro senza prima rimbalzare sul
-              terreno. Quando la palla rimbaza sul terreno ma finisce sulla
-              griglia o rete metallica.
+              il libero non può completare un attacco con la palla completamente
+              al di sopra del bordo superiore della rete;
             </li>
           </ul>
+
           <p className="font-medium my-8">
-            È anche importante sapere che ai giocatori{" "}
-            <strong>è proibito toccare la rete</strong> o appoggiarsi ad essa.
-            Se il giocatore commette questo errore, è un punto perso. Come nel
-            tennis durante il servizio, i giocatori hanno{" "}
-            <strong>due possibilità</strong> di servire correttamente, se dopo
-            il secondo tentativo falliscono di nuovo, allora si perde il punto.
+            <strong>Fallo di velo:</strong>
           </p>
-          <p className="font-medium">
-            Le regole che abbiamo scelto per questo riassunto sono quelle che
-            riteniamo essere le principali e più utili per il gioco. Tuttavia,
-            si consiglia di dare un'occhiata alle Regole Ufficiali del Gioco
-            della Federazione Internazionale del Padel, per conoscere in
-            dettaglio ciascuna di esse.
+          <ul className="list-disc list-outside font-medium">
+            <li>
+              quando un giocatore si posiziona tra il suo compagno in possesso
+              della palla e l'avversario, ostruendogli la visuale;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli di muro:</strong>
           </p>
+          <ul className="list-disc list-outside font-medium">
+            <li>
+              il libero non può effettuare un muro, né tentare di effettuarlo;
+            </li>
+            <li className="my-6">
+              non è possibile effettuare un muro su servizio avversario;
+            </li>
+            <li>
+              un giocatore di seconda linea non può effettuare un muro
+              effettivo;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli di posizione:</strong>
+          </p>
+          <ul className="list-disc list-outside font-medium">
+            <li>
+              al momento del servizio tutti i giocatori in campo devono
+              rispettare le propria posizione di gioco;
+            </li>
+            <li className="my-6">
+              il giocatore in zona di difesa non può attaccare saltando dalla
+              zona d'attacco;
+            </li>
+            <li>
+              un giocatore non può effettuare il servizio al posto di un altro;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli del tocco di palla:</strong>
+          </p>
+          <ul className="list-disc list-outside font-medium">
+            <li>un giocatore non può trattenere la palla o bloccarla;</li>
+            <li className="my-6">
+              un giocatore non può toccare la palla due volte consecutive;
+            </li>
+            <li>
+              una squadra deve completare l'azione e rinviare la palla nel campo
+              avversario non superando i tre tocchi complessivi;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli di rotazione:</strong>
+          </p>
+          <ul className="list-disc list-outside font-medium">
+            <li>
+              quando la squadra non effettua correttamente la rotazione dei
+              turni di servizio;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli di rete:</strong>
+          </p>
+          <ul className="list-disc list-outside font-medium">
+            <li>
+              un giocatore non può invadere il campo opposto con l'intero piede;
+            </li>
+            <li className="my-6">
+              un giocatore, durante una propria azione, non può toccare la banda
+              superiore della rete o l'antenna nella sua parte superiore;
+            </li>
+            <li>
+              la palla non può essere toccata nello spazio opposto prima o
+              durante l'attacco avversario;
+            </li>
+          </ul>
+
+          <p className="font-medium my-8">
+            <strong>Falli di formazione:</strong>
+          </p>
+          <ul className="list-disc list-outside font-medium">
+            <li className="mb-8">
+              quando in campo sono schierati dei giocatori non riportati nella
+              formazione riportata a referto per quel set;
+            </li>
+          </ul>
         </div>
       </div>
     </>
   );
 };
 
-export default PadelR;
+export default ValleyR;

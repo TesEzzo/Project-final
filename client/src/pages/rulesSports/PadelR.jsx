@@ -6,7 +6,8 @@ const PadelR = () => {
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 100; // Altezza della navbar in pixel
-      const offsetTop = element.offsetTop - navbarHeight;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
       const duration = 800; // Durata dello scroll in millisecondi
       const startTime = performance.now();
 
@@ -15,7 +16,9 @@ const PadelR = () => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         const easedProgress = easeInOutQuad(progress);
-        window.scrollTo(0, offsetTop * easedProgress);
+        const newPosition =
+          offsetTop * easedProgress + (1 - easedProgress) * window.pageYOffset;
+        window.scrollTo(0, newPosition);
 
         if (elapsedTime < duration) {
           requestAnimationFrame(animateScroll);
@@ -242,7 +245,7 @@ const PadelR = () => {
           </p>
           <ul className="list-disc list-outside font-medium">
             <li className="mb-6">
-              Punto valido: La palla rimbalza sul terreno e successivamente va 
+              Punto valido: La palla rimbalza sul terreno e successivamente va
               <strong> fuori dal campo</strong>. La palla rimbalza due volte nel
               campo dell'avversario. La palla rimbalaza sul terreno e su una
               delle pareti (laterale o di fondo) senza che l'avversario riesca a

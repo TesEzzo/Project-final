@@ -98,7 +98,8 @@ const LoginClub = () => {
           </div>
         </div>
       </section> */}
-      <div className="bg-cover bg-center h-full flex items-center justify-start w-3/4 m-auto rounded-md mt-10" 
+          <div className="min-h-screen flex items-center">
+      <div className="bg-cover bg-center h-full flex items-center justify-start w-3/4 m-auto rounded-md " 
         style={{backgroundImage: "url('https://wallpaperbat.com/img/110673-tennis-court-wallpaper-top-free-tennis-court-background.jpg')"}}>
         {/* sostituire il link dell'img della section con il percorso nell'assets */}
         <div className="flex flex-col items-center justify-center md:h-full h-full w-[50%]">
@@ -155,6 +156,7 @@ const LoginClub = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import trustpilot from "../assets/trustpilot.svg";
 import logo from "../assets/logo_def.png"
 
 const Footer = () => {
-  const auth = useSelector((state) => state.auth);
 
   return (
     <>
