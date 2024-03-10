@@ -1,13 +1,15 @@
 import { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createNewUser } from "../../utilities/createNewUser";
 
 const RegistrationUser = () => {
+    const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [inputValues, setInputValues] = useState({
-        inputFirstName: '',
-        inputLastName: '',
-        inputEmail: '',
-        inputPassword: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
         inputConfirmPassword: '',
     });
 
@@ -21,7 +23,7 @@ const RegistrationUser = () => {
     };
 
     const handleNextStep = () => {
-        if (inputValues.inputFirstName && inputValues.inputLastName) {
+        if (inputValues.first_name && inputValues.last_name) {
           setStep(2);
         } else {
           alert('Inserisci tutti i valori prima di passare al passo successivo.');
@@ -29,11 +31,24 @@ const RegistrationUser = () => {
     };
 
     const handleFinalStep = () => {
-        if (inputValues.inputPassword !== inputValues.inputConfirmPassword) {
+        if (inputValues.password !== inputValues.inputConfirmPassword) {
             alert(`Attenzione! Password non confermata correttamente!`);
+            return;
         } else {
-            if (inputValues.inputFirstName && inputValues.inputLastName && inputValues.inputEmail && inputValues.inputPassword && inputValues.inputConfirmPassword) {
-        
+            if (inputValues.first_name && inputValues.last_name && inputValues.email && inputValues.password && inputValues.inputConfirmPassword) {
+                
+                const { inputConfirmPassword, ...formData } = inputValues;
+
+                createNewUser(formData, (error, response) => {
+                    if (error) {
+                        alert(`${error.message}`);
+                        return;
+                    } else {
+                        alert("Registrazione effettutata correttamente");
+                        navigate("/login");
+                        // console.log(response);
+                    }
+                })
             } else {
               alert('Inserisci tutti i valori prima di passare al passo successivo.');
             }
@@ -76,16 +91,16 @@ const RegistrationUser = () => {
                                                 Nome<span className="text-red-600">*</span> 
                                             </label>
                                             <input type="text" className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none 
-                                                focus:ring-1 focus:ring-blue-600" placeholder="Nome" name="inputFirstName" 
-                                                value={inputValues.inputFirstName} onChange={handleInputChange} />
+                                                focus:ring-1 focus:ring-blue-600" placeholder="Nome" name="first_name" 
+                                                value={inputValues.first_name} onChange={handleInputChange} />
                                         </div>
                                         <div className="mb-4">
                                             <label className="block mb-2 text-sm"> 
                                                 Cognome<span className="text-red-600">*</span>
                                             </label>
                                             <input type="text" className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none 
-                                                focus:ring-1 focus:ring-blue-600" placeholder="Cognome" name="inputLastName" 
-                                                value={inputValues.inputLastName} onChange={handleInputChange} />
+                                                focus:ring-1 focus:ring-blue-600" placeholder="Cognome" name="last_name" 
+                                                value={inputValues.last_name} onChange={handleInputChange} />
                                         </div>
                                         <div className="flex justify-end mt-[98px]">
                                             <button className="px-6 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors
@@ -137,16 +152,16 @@ const RegistrationUser = () => {
                                                 E-mail<span className="text-red-600">*</span>
                                             </label>
                                             <input className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
-                                                focus:ring-1 focus:ring-blue-600" placeholder="emailpersonale@esempio.com" type="email" name="inputEmail" 
-                                                value={inputValues.inputEmail} onChange={handleInputChange} />
+                                                focus:ring-1 focus:ring-blue-600" placeholder="emailpersonale@esempio.com" type="email" name="email" 
+                                                value={inputValues.email} onChange={handleInputChange} />
                                         </div>
                                         <div className="mb-4">
                                             <label className="block mb-2 text-sm"> 
                                                 Password<span className="text-red-600">*</span>
                                             </label>
                                             <input className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
-                                                focus:ring-1 focus:ring-blue-600" placeholder="••••••••" type="password" name="inputPassword" 
-                                                value={inputValues.inputPassword} onChange={handleInputChange} />
+                                                focus:ring-1 focus:ring-blue-600" placeholder="••••••••" type="password" name="password" 
+                                                value={inputValues.password} onChange={handleInputChange} />
                                         </div>
                                         <div className="mb-4">
                                             <label className="block mb-2 text-sm">
@@ -158,8 +173,8 @@ const RegistrationUser = () => {
                                         </div>
                                         <div className="flex justify-between">
                                             <div onClick={handleStepOne} className="cursor-pointer mt-[22px]">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2563eb" class="w-6 h-6 hover:stroke-[#6191FB]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2563eb" className="w-6 h-6 hover:stroke-[#6191FB]">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                                 </svg>
                                             </div>
                                             <button onClick={handleFinalStep} className="px-6 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors

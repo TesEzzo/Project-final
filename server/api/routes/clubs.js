@@ -86,7 +86,7 @@ app.post("/", async (req, res) => {
     }).required(),
     location: Joi.object().keys({
         address: Joi.string().required(),
-        num: Joi.number().required(),
+        num: Joi.string().required(),
         city: Joi.string().required(),
         cap: Joi.string().required(),
         coordinates: Joi.object().keys({

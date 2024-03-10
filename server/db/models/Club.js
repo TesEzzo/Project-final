@@ -47,7 +47,7 @@ const ClubSchema = new Schema({
             },
             sports: {
                 type: [{
-                    type: Schema.Types.ObjectId,
+                    type: Schema.Types.Array,
                     ref: "Sport",
                 }],
                 required: true,
