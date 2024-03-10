@@ -29,6 +29,10 @@ const UserSchema = new Schema({
         type: String || null,
         default: null,
     },
+    is_verified: {
+        type: Boolean,
+        default: false,
+    },
 }, {
     strict: true, //non consentire il salvataggio di dati non espressi nello schema (se il parametro non è specificato nello schema)
     timestamps: true, //aggiunge due chiavi, aggiunge il valore della data in cui sono stati creati i dati e la data dell'ultima modifica dei dati
