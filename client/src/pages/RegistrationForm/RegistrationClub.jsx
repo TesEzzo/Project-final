@@ -111,7 +111,7 @@ const RegistrationClub = () => {
                         alert(`${error.message}`);
                         return;
                     } else {
-                        alert("Registrazione effettutata correttamente");
+                        alert("E' stata inviata un e-mail all'indirizzo utilizzato per la registrazione, clicca sul link all'interno per completare la registrazione!");
                         navigate("/loginClub");
                         // console.log(response);
                     }

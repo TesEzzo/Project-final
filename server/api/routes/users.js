@@ -77,7 +77,7 @@ app.post("/", async (req, res) => {
 
     const email_verify_url = `${process.env.SERVER_HOST}/auth/verify?token=${email_verify_token}&entity=user`;
 
-    sendMail({ to: userInfo.email, subject: "Verify E-mail", html: `<a href="${email_verify_url}">${email_verify_url}</a>` });
+    sendMail({ to: userInfo.email, subject: "Verifica E-mail", html: `<a href="${email_verify_url}">${email_verify_url}</a>` });
 
     return res.status(201).json({
       ...userInfo
