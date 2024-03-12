@@ -40,7 +40,8 @@ const LoginUser = () => {
 
   return (
     <>
-      <div className="bg-cover bg-center h-full flex items-center justify-end w-3/4 m-auto rounded-md mt-10" 
+    <div className="min-h-screen flex items-center">
+      <div className="bg-cover bg-center flex items-center justify-end w-3/4 m-auto rounded-md" 
         style={{backgroundImage: "url('https://images.unsplash.com/photo-1484482340112-e1e2682b4856?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D')"}}>
         {/* sostituire il link dell'img della section con il percorso nell'assets */}
         <div className="flex flex-col items-center justify-center md:h-full py-0 h-full w-2/4">
@@ -97,6 +98,7 @@ const LoginUser = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

@@ -17,10 +17,10 @@ const NavbarClub = () => {
     <>
       <nav className="flex flex-row justify-between fixed items-center gap-4 h-16 w-full z-[999] bg-sec font-semibold text-white">
         <div className="flex flex-row items-center text-wrap my-16 ml-64">
-          <img src={Test_Logo} alt="" className=" flex max-h-8" />{" "}
+          <img src={Test_Logo} alt="" className="flex h-16 w-16 rounded-full" />{" "}
           {/*//NOTE - img club */}
           <h1 className="text-wrap ">Nome azienda</h1> {/*//NOTE - name club */}
-          <img src={Test_Logo} alt="" className="flex max-h-6" />{" "}
+          <img src={Test_Logo} alt="" className="flex h-8 w-8 rounded-full" />{" "}
           {/*//NOTE - subscription */}
         </div>
 

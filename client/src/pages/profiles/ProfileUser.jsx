@@ -1,34 +1,26 @@
-// import { useDispatch, useSelector } from "react-redux"
-// import { logout } from "../../store/reducers/authSlice";
 import Test_logo from "../../assets/Test_logo.svg";
 
 const ProfileUser = () => {
-  // const dispatch = useDispatch();
-  // const auth = useSelector((state) => state.auth);
-
-  // const handleLogout = () => {
-  //     dispatch(logout());
-  // }
-
   return (
     <>
-      {/* <pre>
-                {JSON.stringify(auth, null, 2)}
-            </pre>
-            <button onClick={handleLogout}>LOGOUT</button> */}
-      <div className="flex flex-row justify-center">
-        <div className="flex flex-col rounded-3xl shadow-xl bg-white my-16 h-max w-3/4 p-16">
-          <div className="flex flex-row items-center h-full w-full gap-10">
-            <div className="max-w-32 max-h-32 rounded-full">
+
+      <div className="flex flex-row justify-center items-center min-h-screen">
+        <div className="flex flex-col rounded-3xl shadow-xl bg-white my-16 h-max w-max p-8">
+          <div className="flex flex-col justify-center items-center h-max w-max gap-10">
+            <div className=" w-full h-52 relative mb-10">
               <img
                 src={Test_logo}
-                alt="Logo aziendale"
-                className="max-w-32 rounded-full"
-              />{" "}
-              {/* //NOTE - foto profilo */}
+                alt=""
+                className="absolute h-full w-full rounded-3xl"
+              /> {/* //NOTE - cover utente */}
+              <img
+                src={Test_logo}
+                alt=""
+                className="absolute h-36 w-36 top-2/4 left-2/4 translate-y-1/4 -translate-x-1/2 rounded-full border-8 border-white"
+              /> {/* //NOTE - img utente */}
             </div>
             <div>
-              <div className="flex flex-col mb-2">
+              <div className="flex flex-col my-2">
                 <label className="font-semibold" htmlFor="nameU">
                   Nome:
                 </label>{" "}
@@ -62,16 +54,14 @@ const ProfileUser = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="flex flex-row h-full">
-            <textarea
-              className="border-2 border-sec rounded"
-              cols="50"
-              rows="14"
-              placeholder="Descrizione"
-            ></textarea>
-            <div className="h-[500px] border-2 border-sec rounded mx-10">Lista amici</div>
-            <div className="h-[500px] border-2 border-sec rounded mx-10">Richieste di amicizia ricevute/inviate</div>
+            <div className="flex flex-row h-full">
+              <textarea
+                className="border-2 border-sec rounded"
+                cols="50"
+                rows="14"
+                placeholder="Descrizione"
+              ></textarea>
+            </div>
           </div>
         </div>
       </div>

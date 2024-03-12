@@ -1,34 +1,27 @@
-// import { useDispatch, useSelector } from "react-redux"
-// import { logout } from "../../store/reducers/authSlice";
 import Test_logo from "../../assets/Test_logo.svg";
 
 const ProfileClub = () => {
-  // const dispatch = useDispatch();
-  // const auth = useSelector((state) => state.auth);
-
-  // const handleLogout = () => {
-  //     dispatch(logout());
-  // }
-
   return (
     <>
-      {/* <pre>
-                {JSON.stringify(auth, null, 2)}
-            </pre>
-            <button onClick={handleLogout}>LOGOUT</button> */}
       <div className="flex flex-row justify-center">
-        <div className="flex flex-row items-center justify-between border-2 rounded-3xl border-none  shadow-xl bg-white transition ease-in-out delay-100 my-16 w-3/4 p-16">
-          <div className="max-w-32 max-h-32 rounded-full">
+        <div className="flex flex-col items-center justify-between rounded-3xl shadow-xl bg-white transition ease-in-out delay-100 my-16 h-max p-8">
+          <div className=" w-full h-52 relative mb-20">
             <img
               src={Test_logo}
-              alt="Logo aziendale"
-              className="max-w-32 rounded-full"
-            />{" "}
-            {/* //NOTE - logo azienda */}
+              alt=""
+              className="absolute h-full w-full rounded-3xl"
+            /> {/* //NOTE - cover club */}
+            <img
+              src={Test_logo}
+              alt=""
+              className="absolute h-36 w-36 top-2/4 left-2/4 translate-y-1/4 -translate-x-1/2 rounded-full border-8 border-white"
+            /> {/* //NOTE - img club */}
           </div>
           <div>
-            <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="nameC">Nome del club:</label>{" "}
+            <div className="flex flex-col my-2">
+              <label className="font-semibold" htmlFor="nameC">
+                Nome del club:
+              </label>{" "}
               {/* //NOTE - nome club */}
               <input
                 type="text"
@@ -37,7 +30,9 @@ const ProfileClub = () => {
               />
             </div>
             <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="numberC">Numero di telefono:</label>{" "}
+              <label className="font-semibold" htmlFor="numberC">
+                Numero di telefono:
+              </label>{" "}
               {/* //NOTE - numero di telefono club*/}
               <input
                 type="text"
@@ -46,7 +41,9 @@ const ProfileClub = () => {
               />
             </div>
             <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="addressC">Via dell'attività:</label>{" "}
+              <label className="font-semibold" htmlFor="addressC">
+                Via dell'attività:
+              </label>{" "}
               {/* //NOTE - address club*/}
               <input
                 type="text"
@@ -55,7 +52,10 @@ const ProfileClub = () => {
               />
             </div>
             <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="emailC">Email:</label> {/* //NOTE - email */}
+              <label className="font-semibold" htmlFor="emailC">
+                Email:
+              </label>{" "}
+              {/* //NOTE - email */}
               <input
                 type="text"
                 name="emailC"
@@ -63,7 +63,9 @@ const ProfileClub = () => {
               />
             </div>
             <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="IdCode">Codice fiscale:</label>{" "}
+              <label className="font-semibold" htmlFor="IdCode">
+                Codice fiscale:
+              </label>{" "}
               {/* //NOTE - c fiscale */}
               <input
                 type="text"
@@ -72,7 +74,9 @@ const ProfileClub = () => {
               />
             </div>
             <div className="flex flex-col mb-2">
-              <label className="font-semibold" htmlFor="iva">Partita iva:</label>{" "}
+              <label className="font-semibold" htmlFor="iva">
+                Partita iva:
+              </label>{" "}
               {/* //NOTE - partita iva */}
               <input
                 type="text"
@@ -83,7 +87,7 @@ const ProfileClub = () => {
           </div>
           <div>
             <textarea
-            className="border-2 border-sec rounded"
+              className="border-2 border-sec rounded"
               cols="50"
               rows="14"
               placeholder="Descrizione"

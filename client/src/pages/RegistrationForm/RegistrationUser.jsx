@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createNewUser } from "../../utilities/createNewUser";
 
 const RegistrationUser = () => {
+
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [inputValues, setInputValues] = useState({
@@ -13,14 +14,16 @@ const RegistrationUser = () => {
         inputConfirmPassword: '',
     });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
 
-        setInputValues((actualValues) => ({
-          ...actualValues,
-          [name]: value,
-        }));
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setInputValues((actualValues) => ({
+      ...actualValues,
+      [name]: value,
+    }));
+  };
+
 
     const handleNextStep = () => {
         if (inputValues.first_name && inputValues.last_name) {
@@ -55,9 +58,11 @@ const RegistrationUser = () => {
         }
     };
 
-    const handleStepOne = useCallback(() => {
-        setStep(1);
-    }, []);
+
+  const handleStepOne = useCallback(() => {
+    setStep(1);
+  }, []);
+
 
     return (
         <>
@@ -118,7 +123,9 @@ const RegistrationUser = () => {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                      </div>
                     </div>
                 )
             }
@@ -193,11 +200,98 @@ const RegistrationUser = () => {
                                 </div>
                             </div>
                         </div>
+                      </div>
                     </div>
-                )
-            }
-        </>
-    )
-}
+                  </div>
+                  <div className="mb-4 mt-4">
+                    <label className="block mb-2 text-sm">
+                      E-mail<span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                focus:ring-1 focus:ring-blue-600"
+                      placeholder="emailpersonale@esempio.com"
+                      type="email"
+                      name="inputEmail"
+                      value={inputValues.inputEmail}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-2 text-sm">
+                      Password<span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                focus:ring-1 focus:ring-blue-600"
+                      placeholder="••••••••"
+                      type="password"
+                      name="inputPassword"
+                      value={inputValues.inputPassword}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-2 text-sm">
+                      Confirm your password
+                      <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                focus:ring-1 focus:ring-blue-600"
+                      placeholder="••••••••"
+                      type="password"
+                      name="inputConfirmPassword"
+                      value={inputValues.inputConfirmPassword}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="flex justify-between">
+                    <div
+                      onClick={handleStepOne}
+                      className="cursor-pointer mt-[22px]"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2563eb"
+                        class="w-6 h-6 hover:stroke-[#6191FB]"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                      </svg>
+                    </div>
+                    <button
+                      onClick={handleFinalStep}
+                      className="px-6 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors
+                                                duration-150 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none"
+                      href="#"
+                    >
+                      Registrati
+                    </button>
+                  </div>
+                  <div className="mt-4 text-center flex flex-row gap-2 w-[100%] justify-end">
+                    <p className="text-sm">Hai già un account?</p>
+                    <Link
+                      to="/login"
+                      className="text-sm text-blue-600 hover:underline hover:text-blue-900"
+                    >
+                      Accedi
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default RegistrationUser;

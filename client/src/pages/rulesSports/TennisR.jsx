@@ -6,7 +6,8 @@ const TennisR = () => {
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 100; // Altezza della navbar in pixel
-      const offsetTop = element.offsetTop - navbarHeight;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
       const duration = 800; // Durata dello scroll in millisecondi
       const startTime = performance.now();
 
@@ -15,7 +16,9 @@ const TennisR = () => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         const easedProgress = easeInOutQuad(progress);
-        window.scrollTo(0, offsetTop * easedProgress);
+        const newPosition =
+          offsetTop * easedProgress + (1 - easedProgress) * window.pageYOffset;
+        window.scrollTo(0, newPosition);
 
         if (elapsedTime < duration) {
           requestAnimationFrame(animateScroll);
@@ -125,7 +128,7 @@ const TennisR = () => {
             Il servizio è valido quando chi serve:
           </p>
           <ul className="list-disc list-outside font-medium">
-            <li className="">
+            <li>
               Ha i piedi fuori dal campo fino a che la palla non viene colpita;
             </li>
             <li className="my-6">Si posiziona dietro la linea di fondo;</li>

@@ -12,7 +12,7 @@ export default {
       },
       colors: {
         //lightmode
-        pri: "#f1f5f9",
+        pri: "#bdbdbd",
         sec: "#17202A",
         ter: "#fa9b30",
         contr: "#313131",

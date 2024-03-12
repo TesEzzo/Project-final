@@ -6,7 +6,8 @@ const FootballR = () => {
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 100; // Altezza della navbar in pixel
-      const offsetTop = element.offsetTop - navbarHeight;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
       const duration = 800; // Durata dello scroll in millisecondi
       const startTime = performance.now();
 
@@ -15,7 +16,9 @@ const FootballR = () => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         const easedProgress = easeInOutQuad(progress);
-        window.scrollTo(0, offsetTop * easedProgress);
+        const newPosition =
+          offsetTop * easedProgress + (1 - easedProgress) * window.pageYOffset;
+        window.scrollTo(0, newPosition);
 
         if (elapsedTime < duration) {
           requestAnimationFrame(animateScroll);
@@ -352,7 +355,7 @@ const FootballR = () => {
           </div>
 
           <h4 id="rimessa" className="font-anton text-3xl">
-                PROCEDURE DI RIMESSA E CALCI SPECIALI
+            PROCEDURE DI RIMESSA E CALCI SPECIALI
           </h4>
           <div className="my-8">
             <h5 className="font-anton text-2xl">
