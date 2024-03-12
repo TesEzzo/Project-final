@@ -26,8 +26,12 @@ const UserSchema = new Schema({
         default: true
     },
     profile_img: {
-        type: String,
+        type: String || null,
         default: null,
+    },
+    is_verified: {
+        type: Boolean,
+        default: false,
     },
 }, {
     strict: true, //non consentire il salvataggio di dati non espressi nello schema (se il parametro non è specificato nello schema)

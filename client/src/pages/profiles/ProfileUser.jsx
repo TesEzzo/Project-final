@@ -1,4 +1,4 @@
-import axios from "axios";
+import Test_logo from "../../assets/Test_logo.svg";
 const ProfileUser = () => {
   return (
     <>
@@ -27,7 +27,6 @@ const ProfileUser = () => {
                   type="text"
                   name="nameU"
                   className="border-2 border-sec rounded"
-                  value={data.first_name}
                 />
               </div>
               <div className="flex flex-col my-2">
