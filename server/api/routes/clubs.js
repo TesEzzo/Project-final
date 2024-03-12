@@ -8,6 +8,8 @@ const { Club } = require("../../db");
 const { outError } = require("../../utility/errors");
 
 const { getCoordsFromAddress } = require("../../utility/address");
+const { generateEmailVerifyToken } = require("../../utility/auth");
+const { sendMail } = require("../../utility/mailer");
 
 /**
  * @path /api/clubs
@@ -86,7 +88,7 @@ app.post("/", async (req, res) => {
     }).required(),
     location: Joi.object().keys({
         address: Joi.string().required(),
-        num: Joi.number().required(),
+        num: Joi.string().required(),
         city: Joi.string().required(),
         cap: Joi.string().required(),
         coordinates: Joi.object().keys({
@@ -114,6 +116,12 @@ app.post("/", async (req, res) => {
     const club = await new Club(data).save();
 
     const { password, ...clubInfo } = club.toObject();
+
+    const email_verify_token = generateEmailVerifyToken("club", { _id: clubInfo._id, email: clubInfo.email });
+
+    const email_verify_url = `${process.env.SERVER_HOST}/auth/verify?token=${email_verify_token}&entity=club`;
+
+    sendMail({ to: clubInfo.email, subject: "Verifica E-mail", html: `<a href="${email_verify_url}">${email_verify_url}</a>` });
 
     return res.status(201).json({
       ...clubInfo
