@@ -1,11 +1,7 @@
-import Test_logo from "../../assets/Test_logo.svg";
-
+import axios from "axios";
 const ProfileUser = () => {
-
-
   return (
     <>
-
       <div className="flex flex-row justify-center items-center min-h-screen">
         <div className="flex flex-col rounded-3xl shadow-xl bg-white my-16 h-max w-max p-8">
           <div className="flex flex-col justify-center items-center h-max w-max gap-10">
