@@ -16,14 +16,4 @@ app.use("/clubs", require("./routes/clubs"));
  */
 app.use("/me", require("./routes/me"));
 
-/**
- * @path /api/spaces
- */
-app.use("/spaces", require("./routes/spaces"));
-
-/**
- * @path /api/sports
- */
-app.use("/sports", require("./routes/sports"));
-
 module.exports = app;

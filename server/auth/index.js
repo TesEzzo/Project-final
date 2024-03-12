@@ -11,9 +11,4 @@ app.use("/users", require("./routes/users"));
  */
 app.use("/clubs", require("./routes/clubs"));
 
-/**
- * @path /auth/verify
- */
-app.use("/verify", require("./routes/verify"));
-
 module.exports = app;
