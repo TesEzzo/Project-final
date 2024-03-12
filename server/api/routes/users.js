@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../../db");
 const { outError } = require("../../utility/errors");
 const { authUser } = require("../../middleware/auth");
+const { generateEmailVerifyToken } = require("../../utility/auth");
+const { sendMail } = require("../../utility/mailer");
 
 /**
  * @path /api/users
@@ -70,6 +72,12 @@ app.post("/", async (req, res) => {
     const user = await new User(data).save();
 
     const { password, ...userInfo } = user.toObject();
+
+    const email_verify_token = generateEmailVerifyToken("user", { _id: userInfo._id, email: userInfo.email });
+
+    const email_verify_url = `${process.env.SERVER_HOST}/auth/verify?token=${email_verify_token}&entity=user`;
+
+    sendMail({ to: userInfo.email, subject: "Verifica E-mail", html: `<a href="${email_verify_url}">${email_verify_url}</a>` });
 
     return res.status(201).json({
       ...userInfo
