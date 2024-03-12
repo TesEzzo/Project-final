@@ -1,28 +1,7 @@
-import { useState } from "react";
-import Test_logo from "../../assets/Test_logo.svg";
 import axios from "axios";
-import Constants from "../../constants";
-
 const ProfileUser = () => {
-  const [data, setData] = useState([])
-
-  const fetchData = async () => {
-    try {
-      const response = await axios({
-        url: `${Constants.API_HOST}/api/users`,
-        method: "GET" || "PUT",
-      });
-
-      setData(response.data.docs) 
-    } catch (error) {
-      throw new Error(error.message)
-    }
-  }
-  fetchData()
-
   return (
     <>
-
       <div className="flex flex-row justify-center items-center min-h-screen">
         <div className="flex flex-col rounded-3xl shadow-xl bg-white my-16 h-max w-max p-8">
           <div className="flex flex-col justify-center items-center h-max w-max gap-10">

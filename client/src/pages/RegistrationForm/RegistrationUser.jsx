@@ -1,13 +1,15 @@
 import { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createNewUser } from "../../utilities/createNewUser";
 
 const RegistrationUser = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [inputValues, setInputValues] = useState({
-    inputFirstName: "",
-    inputLastName: "",
-    inputEmail: "",
-    inputPassword: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
     inputConfirmPassword: "",
   });
 
@@ -21,7 +23,7 @@ const RegistrationUser = () => {
   };
 
   const handleNextStep = () => {
-    if (inputValues.inputFirstName && inputValues.inputLastName) {
+    if (inputValues.first_name && inputValues.last_name) {
       setStep(2);
     } else {
       alert("Inserisci tutti i valori prima di passare al passo successivo.");
@@ -29,16 +31,31 @@ const RegistrationUser = () => {
   };
 
   const handleFinalStep = () => {
-    if (inputValues.inputPassword !== inputValues.inputConfirmPassword) {
+    if (inputValues.password !== inputValues.inputConfirmPassword) {
       alert(`Attenzione! Password non confermata correttamente!`);
+      return;
     } else {
       if (
-        inputValues.inputFirstName &&
-        inputValues.inputLastName &&
-        inputValues.inputEmail &&
-        inputValues.inputPassword &&
+        inputValues.first_name &&
+        inputValues.last_name &&
+        inputValues.email &&
+        inputValues.password &&
         inputValues.inputConfirmPassword
       ) {
+        const { inputConfirmPassword, ...formData } = inputValues;
+
+        createNewUser(formData, (error, response) => {
+          if (error) {
+            alert(`${error.message}`);
+            return;
+          } else {
+            alert(
+              "E' stata inviata un e-mail all'indirizzo utilizzato per la registrazione, clicca sul link all'interno per completare la registrazione!"
+            );
+            navigate("/login");
+            // console.log(response);
+          }
+        });
       } else {
         alert("Inserisci tutti i valori prima di passare al passo successivo.");
       }
@@ -52,7 +69,7 @@ const RegistrationUser = () => {
   return (
     <>
       {step === 1 && (
-        <div className="flex items-center min-h-screen">
+        <div className="bg-[#7C7C7C] flex items-center min-h-screen bg-gray-50">
           <div className="flex-1 min-h-[500px] max-w-4xl mx-auto bg-white rounded-2xl shadow-xl h-[500px]">
             <div className="flex flex-col md:flex-row h-[100%]">
               <div className="md:h-auto md:w-1/2">
@@ -85,8 +102,8 @@ const RegistrationUser = () => {
                       className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none 
                                                 focus:ring-1 focus:ring-blue-600"
                       placeholder="Nome"
-                      name="inputFirstName"
-                      value={inputValues.inputFirstName}
+                      name="first_name"
+                      value={inputValues.first_name}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -99,8 +116,8 @@ const RegistrationUser = () => {
                       className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none 
                                                 focus:ring-1 focus:ring-blue-600"
                       placeholder="Cognome"
-                      name="inputLastName"
-                      value={inputValues.inputLastName}
+                      name="last_name"
+                      value={inputValues.last_name}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -132,7 +149,7 @@ const RegistrationUser = () => {
         </div>
       )}
       {step === 2 && (
-        <div className=" flex items-center min-h-screen">
+        <div className="bg-[#7C7C7C] flex items-center min-h-screen bg-gray-50">
           <div className="flex-1 h-[500px] min-h-[500px] max-w-4xl mx-auto bg-white rounded-2xl shadow-xl">
             <div className="flex flex-col md:flex-row h-[100%]">
               <div className="md:h-auto md:w-1/2">
@@ -165,8 +182,8 @@ const RegistrationUser = () => {
                                                 focus:ring-1 focus:ring-blue-600"
                       placeholder="emailpersonale@esempio.com"
                       type="email"
-                      name="inputEmail"
-                      value={inputValues.inputEmail}
+                      name="email"
+                      value={inputValues.email}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -179,8 +196,8 @@ const RegistrationUser = () => {
                                                 focus:ring-1 focus:ring-blue-600"
                       placeholder="••••••••"
                       type="password"
-                      name="inputPassword"
-                      value={inputValues.inputPassword}
+                      name="password"
+                      value={inputValues.password}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -208,13 +225,13 @@ const RegistrationUser = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                         stroke="#2563eb"
-                        class="w-6 h-6 hover:stroke-[#6191FB]"
+                        className="w-6 h-6 hover:stroke-[#6191FB]"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                         />
                       </svg>
