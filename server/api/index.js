@@ -26,4 +26,9 @@ app.use("/spaces", require("./routes/spaces"));
  */
 app.use("/sports", require("./routes/sports"));
 
+/**
+ * @path /api/events
+ */
+app.use("/events", require("./routes/events"));
+
 module.exports = app;

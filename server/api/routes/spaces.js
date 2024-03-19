@@ -15,6 +15,10 @@ app.post("/", authClub, async (req, res) => {
     const schema = Joi.object().keys({
         sport: Joi.string().required(),
         name: Joi.string().required(),
+        opening_hours: Joi.object().keys({
+            start: Joi.number().required(),
+            end: Joi.number().required()
+        }).required()
     });
 
     try {
@@ -46,6 +50,33 @@ app.get("/:club_id", async (req, res) => {
     } catch (error) {
         return outError(res, { error });
     }
-})
+});
+
+/**
+ * @path /api/spaces/:space_id
+ */
+app.put("/:space_id", authClub, async (req, res) => {
+    const club = req.club._id;
+    const space_id = req.params.space_id;
+
+    const schema = Joi.object().keys({
+        name: Joi.string().optional(),
+        opening_hours: Joi.object().keys({
+            start: Joi.number().required(),
+            end: Joi.number().required()
+        }).optional()
+    });
+
+    try {
+        const data = await schema.validateAsync(req.body);
+
+        const update = await Space.updateOne({ club, _id:space_id }, data);
+        console.log({ club, _id:space_id }, update);
+        
+        return res.status(200).json({ message: "Space updated" });
+    } catch (error) {
+        return outError(res, { error });
+    }
+});
 
 module.exports = app

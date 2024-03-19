@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createNewClub } from "../../utilities/createNewClub";
+import Constants from "../../constants";
 
 const RegistrationClub = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [sport, setSport] = useState([]);
   const [inputValues, setInputValues] = useState({
     name: "",
     owner: {
@@ -31,6 +33,44 @@ const RegistrationClub = () => {
     },
   });
 
+  const handleSelectSport = (event) => {
+    const selectedOption = event.target.value;
+
+    if (!inputValues.info.sports.includes(selectedOption)) {
+      setInputValues((actualValues) => ({
+        ...actualValues,
+        info: {
+          ...actualValues.info,
+          sports: [...actualValues.info.sports, selectedOption]
+        },
+      }));
+    } else {
+      const filteredSports = inputValues.info.sports.filter(item => item !== event.target.value);
+      setInputValues((actualValues) => ({
+        ...actualValues,
+        info: {
+          ...actualValues.info,
+          sports: filteredSports
+        },
+      }));
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${Constants.API_HOST}/api/sports`);
+      const result = await response.json();
+
+        if (response.ok) {
+          setSport(result);
+        } else {
+          throw new Error("Sports not found");
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+  };
+
   const updateObjState = (actualValues, objectName, name, value) => ({
     ...actualValues,
     [objectName]: {
@@ -39,17 +79,17 @@ const RegistrationClub = () => {
     },
   });
 
-  const handleInputSports = (event) => {
-    const { value } = event.target;
+  // const handleInputSports = (event) => {
+  //   const { value } = event.target;
 
-    setInputValues((actualValues) => ({
-      ...actualValues,
-      info: {
-        ...actualValues.info,
-        sports: value.split(",").map((item) => item.trim()),
-      },
-    }));
-  };
+  //   setInputValues((actualValues) => ({
+  //     ...actualValues,
+  //     info: {
+  //       ...actualValues.info,
+  //       sports: value.split(",").map((item) => item.trim()),
+  //     },
+  //   }));
+  // };
 
   const handleInputObjChange = (event, objName) => {
     const { name, value } = event.target;
@@ -105,6 +145,7 @@ const RegistrationClub = () => {
       inputValues.business_info.city &&
       inputValues.business_info.cap
     ) {
+      fetchData();
       setStep(4);
     } else {
       alert("Inserisci tutti i valori prima di passare al passo successivo.");
@@ -581,19 +622,22 @@ const RegistrationClub = () => {
                   </div>
                   <div className="mb-4">
                     <label className="block mb-2 text-sm">
-                      Gli Sport del Club (separati da una virgola)
+                      Seleziona gli Sport del Club
                       <span className="text-red-600">*</span>
                     </label>
-                    <input
-                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
-                                                focus:ring-1 focus:ring-blue-600"
-                      placeholder="Calcio, Tennis, Padel, Basket"
-                      type="text"
-                      name="sports"
-                      value={inputValues.info.sports.join(", ")}
-                      onChange={handleInputSports}
-                    />
-                    {/* value={inputValues.info.sports.join(', ')} onChange={handleInputSports} */}
+                    {
+                      sport.length > 0 && sport.map(item => (
+                        <button key={item._id} value={item._id} 
+                        className={`${inputValues.info.sports.includes(item._id) ? 
+                          "text-black border border-green-700 bg-[#89EDAF] hover:bg-[#89EDAF]/80 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2" 
+                          : 
+                          "text-gray-900 border border-gray-800 hover:bg-[#EBEBEB] focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-1 text-center me-2 mb-2"}`}
+                        onClick={handleSelectSport}
+                        >
+                          {item.name}
+                        </button>
+                      ))
+                    }
                   </div>
                   <div className="flex justify-between">
                     <div
@@ -618,9 +662,7 @@ const RegistrationClub = () => {
                     <button
                       onClick={handleFinalStep}
                       className="px-6 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors
-                                                duration-150 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none"
-                      href="#"
-                    >
+                                  duration-150 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none">
                       Registrati
                     </button>
                   </div>

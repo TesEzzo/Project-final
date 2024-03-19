@@ -40,7 +40,7 @@ const EventSchema = new Schema({
             },
             club: {
                 type: Schema.Types.ObjectId,
-                ref: "User",
+                ref: "Club",
                 default: null,
             },
         }]

@@ -9,10 +9,9 @@ const getDateFromString = (str) => {
     }
 
     const a = str.split("-");
-
     return new Date(a[2], a[1] -1, a[0]);
 }
 
-module.export = {
+module.exports = {
     getDateFromString
 }
