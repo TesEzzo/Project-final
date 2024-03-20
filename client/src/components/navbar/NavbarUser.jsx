@@ -24,6 +24,11 @@ const NavbarUser = () => {
               HOME
             </button>
           </Link>
+          <Link to="/services/events">
+            <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
+              EVENTI
+            </button>
+          </Link>
           <Link to="/services/profile">
             <button className="flex flex-row p-4 items-center w-full rounded-md transition ease-in-out delay-100 active:scale-100 hover:bg-c_button hover:scale-[0.9] hover:shadow-md hover:text-black duration-300">
               PROFILE
