@@ -8,8 +8,12 @@ import volleyball from "../../assets/landingDefault/volleyball.png";
 import { Map } from "../../components/Map";
 import AdsCard from "../../components/AdsCard";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const HomeUser = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <header className="flex flex-col items-center w-full p-16 overflow-x-hidden">
