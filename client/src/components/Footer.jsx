@@ -81,28 +81,7 @@ const Footer = () => {
                 FS19™
               </Link>
               . All Rights Reserved.
-              <div className="flex flex-row mt-5 items-center">
-                <div className="relative">
-                  <input
-                    type="checkbox"
-                    name="dark-mode"
-                    id="dark-toggle"
-                    className="checkbox hidden"
-                  />
-                  <div className="block border-[1px] border-white w-14 h-8 rounded-full"></div>
-                  <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-                </div>
-                <div className="ml-3 font-medium">Dark Mode</div>
-              </div>
             </span>
-            <div className="flex flex-col text-2xl text-white font-semibold items-center">
-              <p>TrustPilot</p>
-              <img
-                src={trustpilot}
-                alt="stelle trustpilot"
-                className="w-[100px]"
-              />
-            </div>
           </div>
         </div>
         <div className="flex justify-center pb-8">
