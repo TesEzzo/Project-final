@@ -1,39 +1,60 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import Constants from "../constants";
 
 export const Map = () => {
+  const [locations, setLocations] = useState([]);
+  const [nameClubs, setnameClubs] = useState([]);
+  const [sportsList, setsportsList] = useState([]);
   const position = [41.90382101620244, 12.499597185654247];
-  const positions = [
-    [41.90216165776404, 12.493159723961785],
-    [45.46398641171503, 9.193249396744442],
-    [38.11508510801652, 13.362153460312172],
-  ];
-  const infos = [
-    ["Roma", "https://www.asroma.com/it", "Forza Daje Roma", "Francesco"],
-    ["Milano", "https://store.inter.it", "Forza Inter", "Tommaso"],
-    ["Palermo", "https://www.palermofc.com/it/", "Forza Palermo", "Tizio"],
-  ];
+
   const zoomLevel = 13;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios({
+          url: `${Constants.API_HOST}/api/clubs`,
+          method: "GET",
+        });
+        const coordinatesArray = response.data.docs.map((club) => {
+          return [club.location.coordinates.lat, club.location.coordinates.lon];
+        });
+        setLocations(coordinatesArray);
+        const name = response.data.docs.map((club) => {
+          return club.name;
+        });
+        setnameClubs(name);
+        const infos = response.data.docs.map((club) => {
+          return club.info.sports;
+        });
+        setsportsList(infos);
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    };
+    fetchData();
+    console.log(sportsList);
+  }, []);
   return (
     <MapContainer center={position} zoom={zoomLevel} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {positions.map((p, index) => (
-        <Marker position={p} key={index}>
-          <Popup>
-            <div>
-              <h2>{infos[index][0]}</h2>
-              <p>{infos[index][2]}</p>
-              <button>
-                <a href={infos[index][1]}>Sito</a>
-              </button>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
+      {locations.length > 0 &&
+        locations.map((p, index) => (
+          <Marker position={p} key={index}>
+            <Popup>
+              <div>
+                <h2>{nameClubs[index]}</h2>
+                <p>{sportsList[index].join(" ")}</p>
+                <button>Profilo</button>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
     </MapContainer>
   );
 };
