@@ -204,7 +204,7 @@ export const Map = () => {
                 ></textarea>
               </div>
               <div>
-                <Link to="/services/events" className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">Eventi del campo</Link>
+                <Link to={`/services/events/${selectedClubData._id}`} className="flex flex-row justify-center items-center mt-2 hover:shadow-black bg-c_button rounded-full px-5 h-8 h-max w-max font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300">Eventi del campo</Link>
               </div>
             </div>
           </div>
