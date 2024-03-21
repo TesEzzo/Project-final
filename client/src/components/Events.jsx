@@ -3,8 +3,6 @@ import { useState } from "react";
 const Events = () => {
     const [newEvent, setNewEvent] = useState(false);
 
-    const clubId = props.match.params.clubId;
-
     const handleNewEvent = () => {
         if (newEvent) {
             setNewEvent(false);
