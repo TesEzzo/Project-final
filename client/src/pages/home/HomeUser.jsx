@@ -71,7 +71,8 @@ const HomeUser = () => {
           <img src={sportHeader} alt="" />
         </section>
         <section>
-          <div>
+          <div className="">
+            <h3 className="text-center font-anton text-3xl my-8 ">Cerca il club vicino a te nella mappa</h3>
             <Map />
           </div>
         </section>
