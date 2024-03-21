@@ -104,7 +104,7 @@ const SubCheckoutGold = () => {
             />
             <p className="text-2xl italic self-center">Premium</p>
             </div>
-            <label className="font-semibold text-md" for="sconto">
+            <label className="font-semibold text-md" htmlFor="sconto">
               Codice sconto
             </label>
             <form

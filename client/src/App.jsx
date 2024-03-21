@@ -23,6 +23,7 @@ import ValleyR from "./pages/rulesSports/ValleyballR";
 import RegReservation from "./pages/tycoon/RegReservation";
 import RegEvents from "./pages/tycoon/RegEvents";
 import CreateEvents from "./pages/CreateEvents";
+import Events from "./components/Events";
 
 const ProtectedRoute = ({ children, identity }) => {
   const auth = useSelector((state) => state.auth);
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="tennisRules" element={<TennisR />} />
           <Route path="basketRules" element={<BasketR />} />
           <Route path="valleyRules" element={<ValleyR />} />
+          <Route path="events" element={<Events/>} />
         </Route>
         <Route
           path="/clubs"

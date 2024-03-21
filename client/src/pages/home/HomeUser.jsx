@@ -8,8 +8,12 @@ import volleyball from "../../assets/landingDefault/volleyball.png";
 import { Map } from "../../components/Map";
 import AdsCard from "../../components/AdsCard";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const HomeUser = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <header className="flex flex-col items-center w-full p-16 overflow-x-hidden">
@@ -67,7 +71,8 @@ const HomeUser = () => {
           <img src={sportHeader} alt="" />
         </section>
         <section>
-          <div>
+          <div className="">
+            <h3 className="text-center font-anton text-3xl my-8 ">Cerca il club vicino a te nella mappa</h3>
             <Map />
           </div>
         </section>
