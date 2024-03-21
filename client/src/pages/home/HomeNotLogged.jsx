@@ -109,7 +109,7 @@ const HomeNotLogged = () => {
                 to="registration"
                 className="text-black w-max text-center my-4 hover:shadow-black bg-c_button rounded-full p-5 px-10 font-semibold transition 
                           ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300 max-[700px]:h-[40px]
-                          max-[700px]:w-[75%] max-[700px]:text-[20px] max-[700px]:px-2 max-[700px]:py-[4px] max-[700px]:text-[15px]"
+                          max-[700px]:w-[75%] max-[700px]:px-2 max-[700px]:py-[4px] max-[700px]:text-[15px]"
               >
                 Registrati
               </Link>
@@ -124,7 +124,7 @@ const HomeNotLogged = () => {
                 to="registrationClub"
                 className="text-black w-max text-center my-4 hover:shadow-black bg-c_button rounded-full p-5 px-10 font-semibold transition 
                           ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300 max-[700px]:h-[40px]
-                          max-[700px]:w-[75%] max-[700px]:text-[20px] max-[700px]:px-2 max-[700px]:py-[4px] max-[700px]:text-[15px]"
+                          max-[700px]:w-[75%] max-[700px]:px-2 max-[700px]:py-[4px] max-[700px]:text-[15px]"
               >
                 Registrati
               </Link>
