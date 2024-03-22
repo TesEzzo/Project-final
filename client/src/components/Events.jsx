@@ -8,6 +8,8 @@ const Events = () => {
     const [clubData, setClubData] = useState(null);
     const [space, setSpace] = useState(null);
     const [maxPlayers, setMaxPlayers] = useState([]);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [slotFromDate, setSlotFromDate] = useState([]);
     const [eventInfo, setEventInfo] = useState({
         club: "",
         space: "",
@@ -17,6 +19,15 @@ const Events = () => {
     });
 
     const { clubId } = useParams();
+
+    const formatDate = (dateString) => {
+        const parts = dateString.split('-');
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+      };
+
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+    };
 
     const handleNewEvent = () => {
         if (newEvent) {
@@ -60,6 +71,21 @@ const Events = () => {
                   players_max_count: null
             }));
         }
+    };
+
+    const handleDateAvailability = () => {
+        const fetchDateAvailability = async () => {
+            try {
+              const response = await axios({
+                url: `${Constants.API_HOST}/api/events/${eventInfo.space}?date=${eventInfo.start_date}&sport=${eventInfo.sport}`,
+                method: "GET",
+              });
+              setSlotFromDate(response.data);
+            } catch (error) {
+              console.error("Error fetching club data:", error);
+            }
+        };
+        fetchDateAvailability();
     }
 
     useEffect(() => {
@@ -108,11 +134,22 @@ const Events = () => {
         fetchSpaceFromClub();
     }, [clubData]);
 
+    useEffect(() => {
+        if(selectedDate !== '') {
+            setEventInfo((actualValues) => ({
+                ...actualValues,
+                  start_date: formatDate(selectedDate)
+            }));
+        }
+    }, [selectedDate]);
+
     const prova = () => {
         // console.log(clubData);
-        console.log(eventInfo);
-        console.log(space);
-        console.log(maxPlayers);
+        // console.log(eventInfo);
+        // console.log(space);
+        // console.log(maxPlayers);
+        // console.log(selectedDate);
+        console.log(slotFromDate);
     }
 
 
@@ -205,27 +242,25 @@ const Events = () => {
                                             </div>
                                         }
                                     </div>
-                                    <div className="relative z-0 w-full mb-5">
-                                        <input type="text" name="floating_last_name" id="floating_last_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                        <label htmlFor="floating_last_name" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Giocatori</label>
-                                    </div>
                                 </div>
                                 <div className="grid md:grid-cols-2 md:gap-6">
                                     <div className="relative z-0 w-full mb-5">
-                                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                        <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Ospiti</label>
+                                        {
+                                            maxPlayers.length > 0 ?
+                                            <div>
+                                                <label htmlFor="data">data:</label>
+                                                <input type="date" id="data" name="data" value={selectedDate} onChange={handleDateChange} />
+                                            </div>
+                                            :
+                                            <div>Seleziona prima il campo</div>
+                                        }
                                     </div>
                                     <div className="relative z-0 w-full mb-5">
-                                        <input type="text" name="floating_company" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                        <label htmlFor="floating_company" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Data Partita</label>
+                                        <button onClick={handleDateAvailability}>cerca disponibilità per il giorno selezionato</button>
                                     </div>
                                     <div className="relative z-0 w-full mb-5">
-                                        <input type="text" name="floating_company" id="Pi" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                        <label htmlFor="floating_company" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">inizio Partita</label>
                                     </div>
                                     <div className="relative z-0 w-full mb-5">
-                                        <input type="text" name="floating_company" id="PF" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                        <label htmlFor="floating_company" className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fine Partita</label>
                                     </div>
                                 </div>
                                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Crea Evento</button>
