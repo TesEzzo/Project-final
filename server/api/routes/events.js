@@ -111,4 +111,24 @@ app.get("/:space_id", async (req, res) => {
     }
 });
 
+/**
+ * @path /api/events/club/:club_id
+ */
+app.get("/club/:club_id", async (req, res) => {
+    const clubId = req.params.club_id;
+    const club = await Club.findById(clubId);
+
+    try {
+
+        if (!club) {
+            return res.status(404).json({ error: "Club non trovato" });
+        }
+        const events = await Event.find({ club: clubId }).populate("space").populate("sport").lean();
+        return res.status(200).json(events);
+
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 module.exports = app;
