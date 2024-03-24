@@ -50,7 +50,7 @@ const HomeNotLogged = () => {
             Stanco di cercare a vuoto il compagno di squadra mancante?
           </h2>
           <h2 className="text-4xl absolute top-80 max-[1200px]:mt-[80px] max-[1200px]:mx-[50px] max-[1200px]:text-center max-[700px]:text-[25px]">
-            Rivoluziona il tuo modo di giocare da qui
+            Rivoluziona il tuo modo di giocare
           </h2>
           <button
             onClick={() => scrollToSection("info")}
