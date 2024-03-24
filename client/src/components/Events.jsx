@@ -6,9 +6,14 @@ import { useSelector } from "react-redux";
 
 const Events = () => {
     const userToken = useSelector((state) => state.auth.token);
+    const userId = useSelector((state) => state.auth.user._id);
     const navigate = useNavigate();
 
     const [newEvent, setNewEvent] = useState(false);
+    const [participation, setParticipation] = useState(false);
+    const [eventId, setEventId] = useState('');
+    const [allEvent, setAllEvent] = useState([]);
+    const [searchEvent, setSearchEvent] = useState(false);
     const [clubData, setClubData] = useState(null);
     const [space, setSpace] = useState(null);
     const [maxPlayers, setMaxPlayers] = useState([]);
@@ -34,6 +39,16 @@ const Events = () => {
         setSelectedDate(event.target.value);
     };
 
+    const handleConfirmPartecipation = (eventId) => {
+        if (participation) {
+            setParticipation(false);
+            setEventId('');
+        } else {
+            setParticipation(true);
+            setEventId(eventId);
+        }
+    }
+
     const handleSelectStartDate = (event) => {
         const selectedStartDate = event.target.value;
 
@@ -51,12 +66,22 @@ const Events = () => {
     };
 
     const handleNewEvent = () => {
+        setSearchEvent(false);
         if (newEvent) {
             setNewEvent(false);
         } else {
             setNewEvent(true);
         }
     };
+
+    const handleSearchEvent = () => {
+        setNewEvent(false);
+        if (searchEvent) {
+            setSearchEvent(false);
+        } else {
+            setSearchEvent(true);
+        }
+    }
 
     const handleSelectSpace = (event) => {
         const selectedOption = event.target.value;
@@ -136,6 +161,37 @@ const Events = () => {
         }
     };
 
+    const handleAddUserToEvent = async (data, token) => {
+        try {
+          const response = await axios({
+            url: `${Constants.API_HOST}/api/events/addPlayer/${eventId}`,
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: data
+          });
+          
+          console.log(response.data.message);
+          alert("Complimenti ti sei aggiunto alla partita con successo!")
+          navigate("/services");
+        } catch (error) {
+          console.error('Si è verificato un errore durante l\'aggiunta dell\'utente all\'evento:', error);
+        }
+    };
+
+    const fetchEventData = async () => {
+        try {
+          const response = await axios({
+            url: `${Constants.API_HOST}/api/events/club/${clubId}`,
+            method: "GET",
+          });
+          setAllEvent(response.data);
+        } catch (error) {
+          console.error("Error fetching all events data:", error);
+        }
+    };
+
     const alertUnselectedDate = () => {
         alert("Selezionare prima una data");
     }
@@ -203,6 +259,10 @@ const Events = () => {
         // console.log(selectedDate);
         // console.log(slotFromDate);
         // console.log(reverseFormatDate);
+        // console.log(allEvent);
+        // console.log(eventId);
+        console.log(userId);
+        // console.log(userToken);
     };
 
     return (
@@ -213,7 +273,7 @@ const Events = () => {
                     hover:shadow font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300 px-4 py-2">
                     Prenota un campo
                 </button>
-                <button className="flex flex-row justify-center items-center font-semibold text-sm border-black rounded-2xl w-fit bg-c_button hover:shadow 
+                <button onClick={handleSearchEvent} className="flex flex-row justify-center items-center font-semibold text-sm border-black rounded-2xl w-fit bg-c_button hover:shadow 
                     font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300 px-4 py-2">
                     Unisciti a una partita
                 </button>
@@ -350,7 +410,76 @@ const Events = () => {
                     </div>
                 )
             }
-            {/* <button onClick={prova}>stampa</button> */}
+            <button onClick={prova}>stampa</button>
+            {
+                searchEvent && (
+                    <div>
+                        <button onClick={fetchEventData} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none 
+                                        focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Trova eventi attivi
+                        </button>
+                        <div>
+                            {
+                                allEvent.length > 0 ?
+                                <div className="flex flex-wrap">
+                                    {
+                                        allEvent.map((item, index) => (
+                                            <div key={index} className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+                                                <div>
+                                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                                                        {item.sport.name}
+                                                    </h5>
+                                                </div>
+                                                <p className="mb-3 font-medium text-gray-700">
+                                                    Campo n° : <span className="font-[25px] font-bold">{item.space.name}</span>
+                                                </p>
+                                                <div>
+                                                    - Data: <span className="font-[25px] font-bold">{item.start_date.split("T")[0]}</span>
+                                                </div>
+                                                <div>
+                                                    - Inizio partita: <span className="font-[25px] font-bold">{item.start_date.substring(item.start_date.indexOf("T") + 1, item.start_date.indexOf(".", item.start_date.indexOf("T")))}</span>
+                                                </div>
+                                                <div>
+                                                    - Fine partita: <span className="font-[25px] font-bold">{item.end_date.substring(item.end_date.indexOf("T") + 1, item.end_date.indexOf(".", item.end_date.indexOf("T")))}</span>
+                                                </div>
+                                                <div>
+                                                    - Numero partecipanti iscritti: <span className="font-[25px] font-bold">{item.players.length}</span>
+                                                </div>
+                                                <div>
+                                                    - Numero massimo partecipanti: <span className="font-[25px] font-bold">{item.players_max_count}</span>
+                                                </div>
+                                                <button onClick={() => handleConfirmPartecipation(item._id)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                                    Partecipa all'evento
+                                                    <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        ))
+                                    }
+                                    {
+                                        participation && (
+                                            <div>
+                                                <h4>Sicuro di voler partecipare alla partita?</h4>
+                                                <button onClick={() => handleAddUserToEvent(userId, userToken)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 
+                                                    font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                        Yes
+                                                </button>
+                                                <button className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 
+                                                    font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                        Red
+                                                </button>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                                :
+                                <div></div>
+                            }
+                        </div>
+                    </div>
+                )
+            }
         </>
     )
 }
