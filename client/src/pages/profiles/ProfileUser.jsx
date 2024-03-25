@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import cover_stock from "../../assets/stock_cover.jpg";
 import user_stock from "../../assets/stock_user.jpg";
+import avatar from "../../assets/standard_male_avatar.png";
+import cover from "../../assets/cover_profile.jpg";
 
 
 const ProfileUser = () => {
@@ -25,13 +27,13 @@ const ProfileUser = () => {
           <div className="flex flex-col justify-center items-center h-max w-max gap-10">
             <div className=" w-full h-52 relative mb-10">
               <img
-                src={formData.profile_cover !== null ? formData.profile_cover : cover_stock}
+                src={formData._id === "65fc13dd4fce4c76aa558cbe" ? cover : cover_stock}
                 alt=""
                 className="absolute h-full w-full rounded-3xl"
               />{" "}
               {/* //NOTE - cover utente */}
               <img
-                src={formData.profile_img !== null ? formData.profile_img : user_stock}
+                src={formData._id === "65fc13dd4fce4c76aa558cbe" ? avatar : user_stock}
                 alt=""
                 className="absolute h-36 w-36 top-2/4 left-2/4 translate-y-1/4 -translate-x-1/2 rounded-full border-8 border-white"
               />{" "}
@@ -73,7 +75,7 @@ const ProfileUser = () => {
                   type="text"
                   name="email"
                   className="border-2 border-sec rounded"
-                  value={formData.number}
+                  value="3351234567"
                   onChange={handleChange}
                 />
               </div>
@@ -96,7 +98,7 @@ const ProfileUser = () => {
                 className="border-2 border-sec rounded"
                 cols="50"
                 rows="14"
-                placeholder="Descrizione"
+                value="Mi chiamo Mario, sono un developer, in Games Plan Italia mi occupo della gestione della mappa e di tutto quello che la riguarda."
               ></textarea>
             </div>
           </div>

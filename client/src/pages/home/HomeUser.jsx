@@ -17,7 +17,7 @@ const HomeUser = () => {
           <p className="font-anton text-3xl ">
             {" "}
             {/* //NOTE - nome utente */}
-            Benvenuto, NOME UTENTE!
+            Benvenuto, Mario Rossi!
           </p>
         </div>
         <div className="flex justify-center mt-10">
