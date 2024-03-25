@@ -3,6 +3,9 @@ import regClub from "../../assets/manager.webp";
 import sportHeader from "../../assets/Roger-Federer.jpg";
 import sport from "../../assets/sportHeader.png";
 import arrow from "../../assets/down-arrow.png";
+import card_1 from "../../assets/card_filosofy.avif";
+import card_2 from "../../assets/card_servizi.webp";
+import card_3 from "../../assets/card_team_1.jpg";
 import { Link } from "react-router-dom";
 
 const HomeNotLogged = () => {
@@ -92,12 +95,65 @@ const HomeNotLogged = () => {
               onClick={() => scrollToSection("reg")}
               className="mt-10 text-2xl top-96 text-black my-4 hover:shadow-black bg-c_button rounded-full p-5 font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300"
             >
-              <img src={arrow} alt="" className="h-6 w-6"/>
+              <img src={arrow} alt="" className="h-6 w-6" />
             </button>
           </div>
         </section>
-        <section className="m-16">
-          <img src={sport} alt="" />
+        <div className="flex justify-center items-center bg-[#FFFFFF] w-full p-[60px]">
+          <div className="flex justify-center items-center gap-24 max-[1200px]:gap-6 max-[950px]:flex-col">
+            <div className="max-w-sm bg-[#E7E7E7] border border-gray-200 rounded-lg shadow max-h-fit h-fit">
+              <div>
+                <img className="rounded-t-lg max-h-[260px] h-[260px]" src={card_1} alt="" />
+              </div>
+              <div className="p-5">
+                <div>
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">La nostra filosofia</h5>
+                </div>
+                <p className="text-[12px] mb-3 font-normal text-gray-700">
+                  La nostra piattaforma digitale facilita il collegamento tra giovani appassionati dello sport e club desiderosi di offrire spazi sportivi 
+                  accoglienti. Crediamo nell'importanza dello sport per la salute e il benessere mentale, e nel potenziale delle partnership per creare 
+                  valore condiviso. Siamo impegnati a rendere lo sport accessibile a tutti, promuovendo uno stile di vita attivo e inclusivo.
+                </p>
+              </div>
+            </div>
+            <div className="max-w-sm bg-[#E7E7E7] border border-gray-200 rounded-lg shadow max-h-fit h-fit">
+              <div>
+                <img className="rounded-t-lg max-h-[260px] h-[260px]" src={card_2} alt="" />
+              </div>
+              <div className="p-5">
+                <div>
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Servizi</h5>
+                </div>
+                <p className="text-[12px] mb-3 font-normal text-gray-700">
+                  Con i nostri servizi, gli utenti possono prenotare facilmente le proprie partite online e iscriversi ad eventi organizzati da altri utenti con un click. 
+                  Per le aziende, offriamo l'opportunità di ampliare la clientela e gestire tutti gli eventi prenotati in modo efficiente, 
+                  eliminando il bisogno di segnare appuntamenti su carta.
+                  Rendiamo la gestione degli eventi sportivi più semplice e conveniente che mai.
+                </p>
+              </div>
+            </div>
+            <div className="max-w-sm bg-[#E7E7E7] border border-gray-200 rounded-lg shadow max-h-fit h-fit">
+              <div>
+                <img className="rounded-t-lg max-h-[260px] h-[260px]" src={card_3} alt="" />
+              </div>
+              <div className="p-5">
+                <div>
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Il Team</h5>
+                </div>
+                <p className="text-[12px] mb-3 font-normal text-gray-700">
+                  Il team è composto da sviluppatori web con una passione condivisa per lo sport e il benessere. 
+                  Oltre alle nostre competenze tecniche, portiamo con noi una profonda comprensione del mondo dello sport e dell'importanza di uno 
+                  stile di vita attivo.
+                  Siamo spinti dal desiderio di creare un impatto positivo sulla vita delle persone attraverso la tecnologia, pronti a guidare utenti e 
+                  club sportivi verso un'esperienza intuitiva e di valore.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section className="flex flex-col justify-center items-center m-16 gap-12">
+          <h6 className="font-bold text-[30px] text-[#126e7f] text-center">"Connessione, innovazione, passione: insieme per uno stile di vita attivo."</h6>
+          <img className="max-w-[500px] max-h-[500px]" src={sport} alt="" />
         </section>
         <section id="reg" className="flex w-full h-[524px] relative max-[900px]:h-[400px] max-[700px]:h-[300px]">
           <div className="w-2/4 relative mr-1 max-[900px]:h-[400px] max-[700px]:h-[300px]">
