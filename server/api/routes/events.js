@@ -3,7 +3,7 @@ const app = express.Router();
 
 const Joi = require("joi");
 
-const { Event, Club, Space, Sport } = require("../../db");
+const { Event, Club, Space, Sport, User } = require("../../db");
 const { outError } = require("../../utility/errors");
 const { getDateFromString } = require("../../utility/dates");
 const { authUser } = require("../../middleware/auth");
@@ -108,6 +108,51 @@ app.get("/:space_id", async (req, res) => {
         return res.status(200).json(all_event_slots);
     } catch (error) {
         return outError(res, { error });
+    }
+});
+
+/**
+ * @path /api/events/club/:club_id
+ */
+app.get("/club/:club_id", async (req, res) => {
+    const clubId = req.params.club_id;
+    const club = await Club.findById(clubId);
+
+    try {
+
+        if (!club) {
+            return res.status(404).json({ error: "Club non trovato" });
+        }
+        const events = await Event.find({ club: clubId }).populate("space").populate("sport").lean();
+        return res.status(200).json(events);
+
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+/**
+ * @path /api/events/addPlayer/:event_id
+ */
+app.put("/addPlayer/:event_id", authUser, async (req, res) => {
+    try {
+        const eventId = req.params.event_id;
+        const userId = req.user._id;
+        console.log(req.user._id);
+        
+        const updatedEvent = await Event.findOneAndUpdate(
+            { _id: eventId },
+            { $addToSet: { players: userId } },
+            { new: true } 
+        );
+
+        if (!updatedEvent) {
+            return res.status(404).json({ error: "Evento non trovato" });
+        }
+
+        return res.status(200).json({ message: "Utente aggiunto con successo all'evento" });
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
     }
 });
 

@@ -15,7 +15,7 @@ const NavbarUser = () => {
       <nav className="flex flex-row justify-between fixed items-center gap-4 h-16 w-full z-[9999] bg-sec font-semibold text-white">
         <div className="h-full flex flex-row items-center ">
           <img src={logo_site} alt="" className="h-full"/>
-          <h1 className="text-4xl font-semibold">Games Plan Italia</h1>
+          <h1 className="text-2xl font-semibold max-[600px]:hidden">Games Plan Italia</h1>
         </div>
 
         <div className="flex flex-row">
