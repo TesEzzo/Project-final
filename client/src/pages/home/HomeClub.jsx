@@ -1,12 +1,17 @@
+import { useSelector } from "react-redux";
 import CalendarClub from "../../components/CalendarClub";
 import SubscriptionsClub from "../../components/SubscriptionsClub";
 
 const HomeClub = () => {
+  const clubInfo = useSelector((state) => state.auth.club);
+
   return (
     <>
       <header className="flex flex-col items-center my-8">
         <p className="text-2xl font-black tracking-wide ">
-          Benvenuto {} Nome Club, ecco i tuoi eventi
+          {
+            `Bentornato ${clubInfo.name}, ecco il tuo calendario delle prenotazioni`
+          }
         </p> {/*//NOTE - name club */}
         <div className="flex flex-col items-center m-3 gap-2">
           <div>{<CalendarClub />}</div>

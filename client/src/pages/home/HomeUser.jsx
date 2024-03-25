@@ -9,8 +9,11 @@ import { Map } from "../../components/Map";
 import AdsCard from "../../components/AdsCard";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const HomeUser = () => {
+  const userInfo = useSelector((state) => state.auth.user);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,7 +24,9 @@ const HomeUser = () => {
           <p className="font-anton text-3xl ">
             {" "}
             {/* //NOTE - nome utente */}
-            Benvenuto, NOME UTENTE!
+            {
+              `Benvenuto ${userInfo.first_name} ${userInfo.last_name}`
+            }
           </p>
         </div>
         <div className="flex justify-center mt-10">

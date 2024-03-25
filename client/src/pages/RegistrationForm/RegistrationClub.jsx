@@ -15,6 +15,10 @@ const RegistrationClub = () => {
     },
     info: {
       sports: [],
+      opening: {
+        hours: "",
+        days: ""
+      }
     },
     business_info: {
       p_iva: "",
@@ -79,18 +83,6 @@ const RegistrationClub = () => {
     },
   });
 
-  // const handleInputSports = (event) => {
-  //   const { value } = event.target;
-
-  //   setInputValues((actualValues) => ({
-  //     ...actualValues,
-  //     info: {
-  //       ...actualValues.info,
-  //       sports: value.split(",").map((item) => item.trim()),
-  //     },
-  //   }));
-  // };
-
   const handleInputObjChange = (event, objName) => {
     const { name, value } = event.target;
 
@@ -105,6 +97,32 @@ const RegistrationClub = () => {
     setInputValues((actualValues) => ({
       ...actualValues,
       [name]: value,
+    }));
+  };
+
+  const handleHoursChange = (event) => {
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      info: {
+        ...prevValues.info,
+        opening: {
+          ...prevValues.info.opening,
+          hours: event.target.value
+        }
+      }
+    }));
+  };
+
+  const handleDaysChange = (event) => {
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      info: {
+        ...prevValues.info,
+        opening: {
+          ...prevValues.info.opening,
+          days: event.target.value
+        }
+      }
     }));
   };
 
@@ -143,7 +161,9 @@ const RegistrationClub = () => {
       inputValues.inputConfirmPassword &&
       inputValues.business_info.address &&
       inputValues.business_info.city &&
-      inputValues.business_info.cap
+      inputValues.business_info.cap && 
+      inputValues.info.opening.hours && 
+      inputValues.info.opening.days
     ) {
       fetchData();
       setStep(4);
@@ -161,7 +181,9 @@ const RegistrationClub = () => {
       inputValues.inputConfirmPassword &&
       inputValues.business_info.address &&
       inputValues.business_info.city &&
-      inputValues.business_info.cap &&
+      inputValues.business_info.cap && 
+      inputValues.info.opening.hours && 
+      inputValues.info.opening.days &&
       inputValues.location.address &&
       inputValues.location.city &&
       inputValues.location.cap &&
@@ -460,33 +482,65 @@ const RegistrationClub = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm">
-                      Città<span className="text-red-600">*</span>
-                    </label>
-                    <input
-                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
-                                                focus:ring-1 focus:ring-blue-600"
-                      placeholder="Città"
-                      type="text"
-                      name="city"
-                      onChange={(e) => handleInputObjChange(e, "business_info")}
-                      value={inputValues.business_info.city}
-                    />
+                  <div className="flex gap-4">
+                    <div className="mb-4">
+                      <label className="block mb-2 text-sm">
+                        Città<span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                  focus:ring-1 focus:ring-blue-600"
+                        placeholder="Città"
+                        type="text"
+                        name="city"
+                        onChange={(e) => handleInputObjChange(e, "business_info")}
+                        value={inputValues.business_info.city}
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block mb-2 text-sm">
+                        CAP<span className="text-red-600">*</span>
+                      </label>
+                      <input
+                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                  focus:ring-1 focus:ring-blue-600"
+                        placeholder="Codice di avviamento postale"
+                        type="text"
+                        name="cap"
+                        onChange={(e) => handleInputObjChange(e, "business_info")}
+                        value={inputValues.business_info.cap}
+                      />
+                    </div>
                   </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm">
-                      CAP<span className="text-red-600">*</span>
-                    </label>
-                    <input
-                      className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
-                                                focus:ring-1 focus:ring-blue-600"
-                      placeholder="Codice di avviamento postale"
-                      type="text"
-                      name="cap"
-                      onChange={(e) => handleInputObjChange(e, "business_info")}
-                      value={inputValues.business_info.cap}
-                    />
+                  <div className="flex gap-4">
+                    <div className="mb-4">
+                      <p className="block mb-2 text-[12px]">
+                        Orario apertura e chiusura<span className="text-red-600">*</span>
+                      </p>
+                      <input
+                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                  focus:ring-1 focus:ring-blue-600"
+                        placeholder="8:00 - 23:00"
+                        type="text"
+                        name="hours"
+                        onChange={(e) => handleHoursChange(e)}
+                        value={inputValues.info.opening.hours}
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <p className="block mb-2 text-sm">
+                        Giorni della settimana<span className="text-red-600">*</span>
+                      </p>
+                      <input
+                        className="w-full px-4 py-2 text-sm border rounded-md focus:border-blue-400 focus:outline-none
+                                                  focus:ring-1 focus:ring-blue-600"
+                        placeholder="7/7"
+                        type="text"
+                        name="days"
+                        onChange={(e) => handleDaysChange(e)}
+                        value={inputValues.info.opening.days}
+                      />
+                    </div>
                   </div>
                   <div className="flex justify-between">
                     <div

@@ -108,6 +108,11 @@ const Events = () => {
         event.preventDefault();
     };
 
+    const handleDisagreeParticipation = () => {
+        setParticipation(false);
+        setEventId('');
+    }
+
     const handleMaxPlayers = (event) => {
         const maxPlayers = event.target.value;
         if (eventInfo.players_max_count === null) {
@@ -172,7 +177,6 @@ const Events = () => {
             data: data
           });
           
-          console.log(response.data.message);
           alert("Complimenti ti sei aggiunto alla partita con successo!")
           navigate("/services");
         } catch (error) {
@@ -261,13 +265,13 @@ const Events = () => {
         // console.log(reverseFormatDate);
         // console.log(allEvent);
         // console.log(eventId);
-        console.log(userId);
+        // console.log(userId);
         // console.log(userToken);
     };
 
     return (
         <>
-            <h4 className="flex flex-row justify-center mt-6 items-center text-3xl italic self-center">Crea il tuo evento o unisciti ad un evento</h4>
+            <h4 className="flex flex-row justify-center mt-6 items-center text-2xl font-bold self-center max-[600px]:text-[20px] text-center">Crea il tuo evento o unisciti ad un evento</h4>
             <div className="flex flex-row justify-center items-center mt-4 gap-8">
                 <button onClick={handleNewEvent} className="flex flex-row justify-center items-center m-2 font-semibold text-sm border-black rounded-2xl w-fit bg-c_button 
                     hover:shadow font-semibold transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:shadow-md duration-300 px-4 py-2">
@@ -410,18 +414,18 @@ const Events = () => {
                     </div>
                 )
             }
-            <button onClick={prova}>stampa</button>
+            {/* <button onClick={prova}>stampa</button> */}
             {
                 searchEvent && (
-                    <div>
+                    <div className="flex flex-col items-center mt-6 mb-6">
                         <button onClick={fetchEventData} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none 
-                                        focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Trova eventi attivi
+                                        focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">
+                            Trova eventi attivi nel club
                         </button>
                         <div>
                             {
                                 allEvent.length > 0 ?
-                                <div className="flex flex-wrap">
+                                <div className="flex flex-wrap gap-6 justify-center">
                                     {
                                         allEvent.map((item, index) => (
                                             <div key={index} className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
@@ -448,7 +452,7 @@ const Events = () => {
                                                 <div>
                                                     - Numero massimo partecipanti: <span className="font-[25px] font-bold">{item.players_max_count}</span>
                                                 </div>
-                                                <button onClick={() => handleConfirmPartecipation(item._id)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                                <button onClick={() => handleConfirmPartecipation(item._id)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mt-4">
                                                     Partecipa all'evento
                                                     <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -459,16 +463,18 @@ const Events = () => {
                                     }
                                     {
                                         participation && (
-                                            <div>
-                                                <h4>Sicuro di voler partecipare alla partita?</h4>
-                                                <button onClick={() => handleAddUserToEvent(userId, userToken)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 
-                                                    font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                                                        Yes
-                                                </button>
-                                                <button className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 
-                                                    font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                                                        Red
-                                                </button>
+                                            <div className="fixed flex flex-col items-center justify-center bg-white/90 h-screen w-full top-0 z-[999999]">
+                                                <h4 className="font-bold text-[20px] mb-8">Sicuro di voler partecipare alla partita?</h4>
+                                                <div className="flex gap-8">
+                                                    <button onClick={() => handleAddUserToEvent(userId, userToken)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 
+                                                        font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                            Yes
+                                                    </button>
+                                                    <button onClick={handleDisagreeParticipation} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 
+                                                        font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                                            Red
+                                                    </button>
+                                                </div>
                                             </div>
                                         )
                                     }
