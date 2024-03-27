@@ -64,7 +64,7 @@ const App = () => {
           <Route path="tennisRules" element={<TennisR />} />
           <Route path="basketRules" element={<BasketR />} />
           <Route path="valleyRules" element={<ValleyR />} />
-          <Route path="events" element={<Events/>} />
+          <Route path="events/:clubId" element={<Events />} />
         </Route>
         <Route
           path="/clubs"

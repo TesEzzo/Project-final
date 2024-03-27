@@ -41,17 +41,17 @@ const LoginUser = () => {
   return (
     <>
     <div className="min-h-screen flex items-center">
-      <div className="bg-cover bg-center flex items-center justify-end w-3/4 m-auto rounded-md" 
+      <div className="bg-cover bg-center flex items-center justify-end w-3/4 m-auto rounded-md max-[970px]:w-full" 
         style={{backgroundImage: "url('https://images.unsplash.com/photo-1484482340112-e1e2682b4856?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D')"}}>
         {/* sostituire il link dell'img della section con il percorso nell'assets */}
-        <div className="flex flex-col items-center justify-center md:h-full py-0 h-full w-2/4">
-          <div className="w-full md:mt-0 xl:p-0 h-full">
-            <div className="p-[38px] space-y-4 md:space-y-6 bg-white shadow h-full w-full flex flex-col justify-between rounded-r-md">
+        <div className="flex flex-col items-center justify-center py-0 h-full w-2/4 max-[700px]:w-full">
+          <div className="w-full xl:p-0 h-full">
+            <div className="p-[38px] space-y-4 bg-white shadow h-full w-full flex flex-col justify-between rounded-r-md">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-[#313131] md:text-2xl text-center pt-[30px]">
                 Accedi al tuo account
               </h1>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 flex flex-col items-center">
-                  <div className="w-2/4">
+                  <div className="w-2/4 max-[1200px]:w-[75%] max-[700px]:w-[50%]">
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                       Email
                     </label>
@@ -59,7 +59,7 @@ const LoginUser = () => {
                       sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" 
                       placeholder="nome@esempio.com" required="" />
                   </div>
-                  <div className="w-2/4">
+                  <div className="w-2/4 max-[1200px]:w-[75%] max-[700px]:w-[50%]">
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
                       Password
                     </label>

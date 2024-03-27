@@ -34,7 +34,7 @@ const PadelR = () => {
       <div className="w-full flex flex-col items-center leading-relaxed">
         <div className="flex flex-row w-full h-screen">
           <div className="flex flex-col items-center justify-between w-2/4 bg-gradient-to-b from-white to-ter py-20 h-screen text-center">
-            <h2 className="font-anton text-8xl">Regole del Padel</h2>
+            <h2 className="font-anton text-8xl max-md:text-6xl">Regole del Padel</h2>
 
             <div className="flex flex-row justify-between items-center w-full group">
               <img
